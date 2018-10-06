@@ -21,23 +21,41 @@ const rand = async (slots, count) => {
 
 	let index =  n % (viableDays.length);
 	let day = viableDays[index]
+	let slot = [];
 
-
-	buff = crypto.randomBytes(2);
-	n = parseInt(buff.toString('hex'),16)
-	console.log(n);
-
-	let slot = n % slots[day].length;
-
-	console.log(day, slot)
+	for(i=0;i<count;i++){
+		buff = crypto.randomBytes(2);
+		n = parseInt(buff.toString('hex'),16)
+	
+		let s = n % slots[day].length;
+		slot.push(s);
+		slots[day].pop(s);
+		delete s;
+	}
+	delete buff, n, viableDays, i,index;
+	console.log(day,slot)
+	return day, slot
 }
 
 const generate = async (instaces, givenSlots, teachers, sections) => {
 	
 	let secInstances  = {};	
 	let i,j,k;
+	let TT = [];
+	let secTT = {};
+	let teacherTT = {};
+
 	for (i in sections){
+		let mapp = givenSlots.map(x =>{z =[]; for(j=0;j<x;j++){z.push(0);} return z;});
 		secInstances[sections[i]] = [];
+		secTT[sections[i]] = mapp;
+		delete mapp,j;
+	}
+
+	for (i in teachers){
+		let mapp = givenSlots.map(x =>{z =[]; for(j=0;j<x;j++){z.push(0);} return z;});
+		teacherTT [teachers[i]] = mapp;
+		delete mapp,j;
 	}
 
 	for (i in sections){
@@ -51,12 +69,28 @@ const generate = async (instaces, givenSlots, teachers, sections) => {
 	}
 	
 	//console.log(secInstances);
-	let TT = [];
-	let secTT = [];
-	let techerTT = [];
 
-	for(i in secInstances){
-					
+	for(i in sections){
+
+		let currentTT = givenSlots.map(x =>{z =[]; for(j=0;j<x;j++){z.push(0);} return z;});
+		for(j in secInstances[sections[i]]){
+			
+			let availSlots = [];
+			for(day =0 ; day < givenSlots.length; day++){
+			
+				let daySlots = []
+				for(slot= 0; slot < givenSlots[day]; slot++){
+			
+					if((teacherTT[secInstances[sections[i]][j].teacher][day][slot] == 0) && (currentTT[day][slot] == 0)){
+						daySlots.push(slot);
+					}	
+				}
+				availSlots.push(daySlots);
+			}
+
+			//console.log(sections[i], j, availSlots);
+
+		}									
 	}
 }
 /*
@@ -109,4 +143,4 @@ generate([{
 	numLectures: "4",
 	numLabs: null
 }], [8,8,8,8,8,8,5], ["T1", "T2", "T3", "T4", "T5", "T6"], ["12A", "12B"]); */
-rand([[1,2,3,4], [1,2,3,4], [1,2,3,4]], 2)
+rand([[1,2,3,4], [1,2,3,4], [1,2,3,4]], 3)
