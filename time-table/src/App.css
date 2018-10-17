@@ -1,32 +1,108 @@
-.App {
+#sign-in-page {
+  height: 732px;
+}
+
+.sign-in {
+  position: absolute;
+  width: 360px;
+  height: 300px;
+  border: 1px solid black;
+  padding: 15px;
+  margin-left: 450px;
+  margin-top: 150px;
+  font-family: "Nunito";
+  color: black;
+}
+
+.sign-in-title {
   text-align: center;
+  font-size: 35px;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  color: black;
+  text-align: center;
+  margin-left: 35%;
+  float: left;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.sign-in-form {
+  position: absolute;
+  margin: 15px;
+  padding: 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.sign-in-form > div {
+  margin-bottom: 15px;
+}
+
+.sign-in-email,
+.sign-in-password {
+  width: 310px;
+  height: 30px;
+  margin-bottom: 15px;
+  outline: none;
+  font-family: "Nunito";
+  font-size: 15px;
+  border: 1px solid grey;
+  padding-left: 2px;
+}
+
+.sign-in-button,
+.sign-in-cancel-button {
+  margin-right: 10px;
+  height: 35px;
+  width: 150px;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-family: "Nunito";
+  transition-duration: 0.7s;
+}
+
+.sign-in-button {
+  border: 1px solid #0aa100;
+  color: #0aa100;
+}
+
+.sign-in-button:hover {
+  background-color: #0aa100;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.sign-in-cancel-button {
+  border: 1px solid #dc0000;
+  color: #dc0000;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sign-in-cancel-button:hover {
+  background-color: #dc0000;
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  width: 10%;
+}
+
+li a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li.navlink:hover {
+  background-color: #111;
+}
+
+.logo {
+  font-size: 1.5rem;
+  width: 70%;
 }
