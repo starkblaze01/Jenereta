@@ -1,30 +1,24 @@
 {
   "name": "time-table",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "npm": "^6.4.1",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-redux": "^5.0.7",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "2.0.3",
-    "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
-  },
+  "version": "1.0.0",
+  "description": "Time-Table Generator",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "author": "CS08",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.3.4",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^10.8.0"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
 }
