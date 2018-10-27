@@ -3,6 +3,8 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 
+const validateClassAndsecInput = require("../../validation/profile");
+
 // Load Profile Model
 const ClassAndsec = require("../../models/ClassAndsec");
 //Load User Model
@@ -41,28 +43,47 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    const { errors, isValid } = validateClassAndsecInput(req.body);
+
+    // check validation
+    if (!isValid) {
+      // Return any errors with 400 status
+      return res.status(400).json(errors);
+    }
+
     //Get fields
     const classAndsecFields = {};
     classAndsecFields.user = req.user.id;
     //Split into array
     if (typeof req.body.classAndsec !== "undefined") {
       classAndsecFields.classAndsec = req.body.classAndsec.split(",");
+      classAndsecFields.classAndsec.forEach(classsec => {
+        classsec = classsec.trim();
+      });
     }
 
     ClassAndsec.findOne({ user: req.user.id }).then(classAndsec => {
       if (classAndsec) {
-        // Update
-        ClassAndsec.findByIdAndUpdate(
-          { user: req.user.id },
-          { $addToSet: classAndsecFields },
-          { new: true }
-        ).then(classAndsec => res.json(classAndsec));
+        classAndsecFields.classAndsec.forEach(classsec => {
+          if (teachersName.teachersName.includes(classsec)) {
+            return res.json({ msg: "This Class Sec already Exist" });
+          } else {
+            // Update
+            ClassAndsec.findByIdAndUpdate(
+              { user: req.user.id },
+              { $push: { classAndsec: classAndsecFields.classAndsec } },
+              { new: true }
+            ).then(classAndsec => res.json(classAndsec));
+          }
+        });
       } else {
         //Create
         //Save Profile
-        new ClassAndsec(classAndsecFields).save.then(classAndsec =>
-          res.json(classAndsec)
-        );
+        ClassAndsec.findOne({ user: req.user.id }).then(classAndsec => {
+          new ClassAndsec(classAndsecFields).save.then(classAndsec =>
+            res.json(classAndsec)
+          );
+        });
       }
     });
   }
