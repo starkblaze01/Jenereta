@@ -59,7 +59,7 @@ router.post(
       teachersNameFields.teachersName = req.body.teachersName.split(",");
       teachersNameFields.teachersName.forEach(teacher => {
         teacher = teacher.trim();
-        console.log(teacher);
+        // console.log(teacher);
       });
     }
 

@@ -73,7 +73,9 @@ router.post(
               { user: req.user.id },
               { $push: { classAndsec: classAndsecFields.classAndsec } },
               { new: true }
-            ).then(classAndsec => res.json(classAndsec));
+            )
+              .then(classAndsec => res.json(classAndsec))
+              .catch(err => res.json(err));
           }
         });
       } else {
@@ -86,6 +88,35 @@ router.post(
         });
       }
     });
+  }
+);
+
+// @route       DELETE api/teachersName/:teacher_id
+// @desc        Delete teachersName
+// @access      Private
+router.delete(
+  "/class",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    ClassAndsec.findOneAndUpdate(
+      { user: req.user.id },
+      { $pull: { classAndsec: req.body.classAndsec } },
+      { new: true }
+    )
+      .then(
+        classAndsec => res.json(classAndsec)
+        // //GET remove index
+        // const removeIndex = teachersName.teachersName
+        //   .map(item => item.id)
+        //   .indexOf(req.params.teachersName);
+
+        // //Spile out of array
+        // teachersName.teachersName.splice(removeIndex, 1);
+
+        // //Save
+        // teachersName.save().then(teachersName => res.json(teachersName));
+      )
+      .catch(err => res.status(404).json(err));
   }
 );
 

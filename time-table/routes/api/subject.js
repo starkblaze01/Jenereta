@@ -78,7 +78,6 @@ router.post(
               .catch(err => res.json(err));
           }
         });
-        // Update
       } else {
         //Create
         //Save Profile
@@ -87,6 +86,35 @@ router.post(
         });
       }
     });
+  }
+);
+
+// @route       DELETE api/teachersName/:teacher_id
+// @desc        Delete teachersName
+// @access      Private
+router.delete(
+  "/subjectname",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Subject.findOneAndUpdate(
+      { user: req.user.id },
+      { $pull: { subject: req.body.subject } },
+      { new: true }
+    )
+      .then(
+        subject => res.json(subject)
+        // //GET remove index
+        // const removeIndex = teachersName.teachersName
+        //   .map(item => item.id)
+        //   .indexOf(req.params.teachersName);
+
+        // //Spile out of array
+        // teachersName.teachersName.splice(removeIndex, 1);
+
+        // //Save
+        // teachersName.save().then(teachersName => res.json(teachersName));
+      )
+      .catch(err => res.status(404).json(err));
   }
 );
 
