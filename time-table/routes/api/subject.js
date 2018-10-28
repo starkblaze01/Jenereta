@@ -69,7 +69,7 @@ router.post(
           if (subject.subject.includes(subjects)) {
             return res.json({ msg: "Teacher's Name already Exist" });
           } else {
-            Subject.findByIdAndUpdate(
+            Subject.findOneAndUpdate(
               { user: req.user.id },
               { $push: { subject: subject.subject } },
               { new: true }
