@@ -69,7 +69,7 @@ router.post(
             return res.json({ msg: "This Class Sec already Exist" });
           } else {
             // Update
-            ClassAndsec.findByIdAndUpdate(
+            ClassAndsec.findOneAndUpdate(
               { user: req.user.id },
               { $push: { classAndsec: classAndsecFields.classAndsec } },
               { new: true }

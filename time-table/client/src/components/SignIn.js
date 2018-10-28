@@ -15,16 +15,40 @@ import store from "../store";
 class SignIn extends Component {
   constructor(props) {
     super(props);
-
-    this.handleLogin = this.handleLogin.bind(this);
+    this.state = {
+      email: "",
+      password: "",
+      errors: {}
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
-
-  handleLogin(event) {
-    alert(
-      "Username: " + this.username.value + "Password: " + this.password.value
-    );
+  handleInputChange(event) {
+    // const target = event.target;
+    // const value = target.value;
+    // const name = target.name;
+    // this.setState({
+    //   [name]: value
+    // });
+    this.setState({ [event.target.name]: event.target.value });
+  }
+  handleSubmit(event) {
+    // console.log("current state is: " + JSON.stringify(this.state));
+    //  alert("current state is: " + JSON.stringify(this.state));
     event.preventDefault();
+    const user = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    console.log(user);
   }
+
+  // handleLogin(event) {
+  //   alert(
+  //     "Username: " + this.username.value + "Password: " + this.password.value
+  //   );
+  //   event.preventDefault();
+  // }
 
   render() {
     return (
@@ -38,10 +62,10 @@ class SignIn extends Component {
                 </div>
 
                 <div className="col-12 col-md-9">
-                  <Form onSubmit={this.handleLogin}>
+                  <Form onSubmit={this.handleSubmit}>
                     <FormGroup row>
                       <Col md={{ size: 2, offset: 3 }}>
-                        <Label htmlFor="username">Username</Label>
+                        <Label htmlFor="email">Email</Label>
                       </Col>
                       <Col md={7}>
                         <div className="input-group mb-1">
@@ -55,10 +79,12 @@ class SignIn extends Component {
                           </div>
                           <Input
                             type="text"
-                            id="username"
-                            name="username"
-                            placeholder="Username"
-                            innerRef={input => (this.username = input)}
+                            id="email"
+                            name="email"
+                            placeholder="Email"
+                            // innerRef={input => (this.username = input)}
+                            value={this.state.email}
+                            onChange={this.handleInputChange}
                           />
                         </div>
                       </Col>
@@ -83,7 +109,9 @@ class SignIn extends Component {
                             id="password"
                             name="password"
                             placeholder="Password"
-                            innerRef={input => (this.password = input)}
+                            // innerRef={input => (this.password = input)}
+                            value={this.state.password}
+                            onChange={this.handleInputChange}
                           />
                         </div>
                       </Col>
