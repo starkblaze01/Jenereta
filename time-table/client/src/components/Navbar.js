@@ -8,7 +8,6 @@ import {
   NavItem
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
-import
 
 class Header extends Component {
   constructor(props) {

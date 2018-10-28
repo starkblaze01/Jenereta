@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import axios from "axios";
+import classnames from "classnames";
+
 import {
   Button,
   Form,
@@ -14,78 +17,64 @@ class Register extends Component {
     super(props);
 
     this.state = {
-      username: "",
+      name: "",
       email: "",
       password: "",
       confirmpassword: "",
-      touched: {
-        username: false,
-        email: false,
-        password: false,
-        confirmpassword: false
-      }
+      errors: {}
+      // touched: {
+      //   name: false,
+      //   email: false,
+      //   password: false,
+      //   confirmpassword: false
+      // }
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
+    //   this.handleBlur = this.handleBlur.bind(this);
   }
 
   handleInputChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-    this.setState({
-      [name]: value
-    });
+    // const target = event.target;
+    // const value = target.value;
+    // const name = target.name;
+    // this.setState({
+    //   [name]: value
+    // });
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSubmit(event) {
-    console.log("current state is: " + JSON.stringify(this.state));
-    alert("current state is: " + JSON.stringify(this.state));
+    // console.log("current state is: " + JSON.stringify(this.state));
+    //  alert("current state is: " + JSON.stringify(this.state));
     event.preventDefault();
-  }
-
-  handleBlur = field => evt => {
-    this.setState({
-      touched: { ...this.state.touched, [field]: true }
-    });
-  };
-
-  validate(username, email, password, confirmpassword) {
-    const errors = {
-      username: "",
-      email: "",
-      password: "",
-      confirmpassword: ""
+    const newUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      confirmpassword: this.state.confirmpassword
     };
-
-    if (this.state.touched.password && password.length < 3)
-      errors.password = "Password should be >=3 characters";
-    else if (this.state.touched.password && password.length > 10)
-      errors.password = "Password should be <=10 characters";
-    if (this.state.touched.confirmpassword && confirmpassword.length < 3)
-      errors.confirmpassword = "Password should be >=3 characters";
-    else if (this.state.touched.confirmpassword && confirmpassword.length > 10)
-      errors.confirmpassword = "Password should be <=10 characters";
-    if (this.state.touched.username && username.length < 3)
-      errors.username = "Username should be >=3 characters";
-    if (
-      this.state.touched.email &&
-      email.split("").filter(x => x === "@").length !== 1
-    )
-      errors.email = "Email should contain a @";
-
-    return errors;
+    axios
+      .post("/api/users/register", newUser)
+      .then(res => console.log(res.data))
+      .catch(err => this.setState({ errors: err.response.data }));
   }
+
+  // handleBlur = field => evt => {
+  //   this.setState({
+  //     touched: { ...this.state.touched, [field]: true }
+  //   });
+  // };
 
   render() {
-    const errors = this.validate(
-      this.state.username,
-      this.state.email,
-      this.state.password,
-      this.state.confirmpassword
-    );
+    // const errors = this.validate(
+    //   this.state.name,
+    //   this.state.email,
+    //   this.state.password,
+    //   this.state.confirmpassword
+    // );
+    const { errors } = this.state;
     return (
       <div className="container">
         <div className="verticalspace">
@@ -98,7 +87,7 @@ class Register extends Component {
               <Form onSubmit={this.handleSubmit}>
                 <FormGroup row>
                   <Col md={{ size: 2, offset: 3 }}>
-                    <Label htmlFor="username">Username</Label>
+                    <Label htmlFor="name">Name</Label>
                   </Col>
                   <Col md={7}>
                     <div className="input-group mb-1">
@@ -109,19 +98,29 @@ class Register extends Component {
                       </div>
                       <Input
                         type="text"
-                        id="username"
-                        name="username"
-                        placeholder="Username"
-                        valid={errors.username === ""}
-                        invalid={errors.username !== ""}
-                        value={this.state.username}
+                        id="name"
+                        name="name"
+                        placeholder="Name"
+                        value={this.state.name}
                         onChange={this.handleInputChange}
-                        onBlur={this.handleBlur("username")}
-                        prefix={
-                          <span className="fa fa-search form-control-feedback" />
-                        }
+                        className={classnames(
+                          "fa fa-search form-control-feedback",
+                          { "is-invalid": errors.name }
+                        )}
+                        //   onBlur={this.handleBlur("name")}
+                        // prefix={
+                        //   <span
+                        //     className={classnames(
+                        //       "fa fa-search form-control-feedback",
+                        //       { "is-invalid": errors.name }
+                        //     )}
+                        //   />
+                        // }
                       />
-                      <FormFeedback>{errors.username}</FormFeedback>
+                      {/* {errors.name && (
+                        <div className="invalid-feedback">{errors.name}</div>
+                      )} */}
+                      <FormFeedback>{errors.name}</FormFeedback>
                     </div>
                   </Col>
                 </FormGroup>
@@ -142,11 +141,13 @@ class Register extends Component {
                         id="email"
                         name="email"
                         placeholder="Email"
-                        valid={errors.email === ""}
-                        invalid={errors.email !== ""}
                         value={this.state.email}
                         onChange={this.handleInputChange}
-                        onBlur={this.handleBlur("email")}
+                        className={classnames(
+                          "fa fa-search form-control-feedback",
+                          { "is-invalid": errors.email }
+                        )}
+                        // onBlur={this.handleBlur("email")}
                       />
                       <FormFeedback>{errors.email}</FormFeedback>
                     </div>
@@ -169,11 +170,13 @@ class Register extends Component {
                         id="password"
                         name="password"
                         placeholder="Password"
-                        valid={errors.password === ""}
-                        invalid={errors.password !== ""}
                         value={this.state.password}
                         onChange={this.handleInputChange}
-                        onBlur={this.handleBlur("password")}
+                        className={classnames(
+                          "fa fa-search form-control-feedback",
+                          { "is-invalid": errors.password }
+                        )}
+                        //  onBlur={this.handleBlur("password")}
                       />
                       <FormFeedback>{errors.password}</FormFeedback>
                     </div>
@@ -196,11 +199,13 @@ class Register extends Component {
                         id="confirmpassword"
                         name="confirmpassword"
                         placeholder="Confirm Password"
-                        valid={errors.confirmpassword === ""}
-                        invalid={errors.confirmpassword !== ""}
                         value={this.state.confirmpassword}
                         onChange={this.handleInputChange}
-                        onBlur={this.handleBlur("confirmpassword")}
+                        className={classnames(
+                          "fa fa-search form-control-feedback",
+                          { "is-invalid": errors.confirmpassword }
+                        )}
+                        //  onBlur={this.handleBlur("confirmpassword")}
                       />
                       <FormFeedback>{errors.confirmpassword}</FormFeedback>
                     </div>
