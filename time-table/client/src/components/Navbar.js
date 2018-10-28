@@ -8,6 +8,7 @@ import {
   NavItem
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
+import
 
 class Header extends Component {
   constructor(props) {
@@ -55,6 +56,21 @@ class Header extends Component {
                 <NavItem>
                   <NavLink className="nav-link" to="/faq">
                     <span className="fa fa-question-circle fa-lg"> FAQ</span>
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink className="nav-link right" to="/profile">
+                    <span className="fa fa-address-book fa-lg">Profile</span>
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink className="nav-link right" to="/SignIn">
+                    <span className="fa fa-sign-in fa-lg">Sign In</span>
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink className="nav-link right" to="/register">
+                    <span className="fa fa-plus fa-lg">Register</span>
                   </NavLink>
                 </NavItem>
               </Nav>

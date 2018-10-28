@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 
+const validateProfileInput = require("../../validation/profile");
 // Load Profile Model
 const Profile = require("../../models/Profile");
 //Load User Model
@@ -41,17 +42,25 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    const { errors, isValid } = validateProfileInput(req.body);
+
+    // check validation
+    if (!isValid) {
+      // Return any errors with 400 status
+      return res.status(400).json(errors);
+    }
+
     //Get fields
     const profileFields = {};
     profileFields.user = req.user.id;
-    if (req.body.handle) profileFields.institute = req.body.institute;
-    if (req.body.handle)
+    if (req.body.institute) profileFields.institute = req.body.institute;
+    if (req.body.institutewebsite)
       profileFields.institutewebsite = req.body.institutewebsite;
 
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
         // Update
-        Profile.findByIdAndUpdate(
+        Profile.findOneAndUpdate(
           { user: req.user.id },
           { $set: profileFields },
           { new: true }
@@ -59,8 +68,30 @@ router.post(
       } else {
         //Create
         //Save Profile
-        new Profile(profileFields).save.then(profile => res.json(profile));
+        Profile.findOne({ user: req.user.id }).then(profile => {
+          new Profile({
+            institute: profileFields.institute,
+            institutewebsite: profileFields.institutewebsite
+          })
+            .save()
+            .then(profile => res.json(profile));
+        });
       }
+    });
+  }
+);
+
+// @route       DELETE api/profile
+// @desc        Delete user and profile
+// @access      Private
+router.delete(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOneAndRemove({ user: req.user.id }).then(() => {
+      User.findOneAndRemove(
+        { _id: req.user.id }.then(() => res.json({ success: true }))
+      );
     });
   }
 );
