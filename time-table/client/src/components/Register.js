@@ -76,7 +76,7 @@ class Register extends Component {
     // );
     const { errors } = this.state;
     return (
-      <div className="container">
+      <div className="container page">
         <div className="verticalspace">
           <div className="row">
             <div className="col-12 mb-3">

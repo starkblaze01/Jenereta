@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 class Home extends Component {
   render() {
     return (
-      <React.Fragment>
+      <div className="page">
         <Jumbotron>
           <div className="container">
             <div className="row row-header">
@@ -57,7 +57,7 @@ class Home extends Component {
             </Link>
           </Col>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }
