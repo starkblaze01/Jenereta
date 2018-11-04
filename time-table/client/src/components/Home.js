@@ -13,13 +13,14 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="page">
+       <div className="homepage">
         <Jumbotron>
-          <div className="container">
+          <div className="container page">
             <div className="row row-header">
-              <div className="col-12 col-sm-6">
-                <h1>TimeTable Generator</h1>
-                <p>
+                 <div className="col-12 col-md-6"> 
+              < div class = "intro text-center" >
+                < h1 class = "grand-title text-color-white title-text" > TimeTable Generator </h1>
+                <p class="white">
                   The process of creating time-table is quite tedious and
                   requires lots of human efforts. Time Table Generator aims to
                   reduce the time and efforts of manually creating the
@@ -27,45 +28,19 @@ class Home extends Component {
                   a timetable with minimum number of clashes.
                 </p>
               </div>
-              <div className="col-12 col-sm-6">
-                <img
+              </div> 
+              <div className="col-12 col-md-6">
+                <img id="ttlogo"
                   alt="time-table"
-                  src="assets/timetable-logo.png"
-                  width="40%"
-                  height="100%"
+                  src="assets/ttlogo5.png"
+                  width="65%"
+                  height="65%"
                 />
               </div>
             </div>
           </div>
         </Jumbotron>
-        <div className="row headsign">
-          <Col md={{ size: 6, offset: 3 }}>
-            <Link to={`/register`}>
-              <Button
-                className="btn-lg btn-info"
-                type="submit"
-                color="secondary"
-              >
-                Register
-              </Button>
-            </Link>
-          </Col>
-        </div>
-        <div className="row headsign">
-          <Col md={{ size: 6, offset: 3 }}>
-            <Link to={`/SignIn`}>
-              <Button
-                className="btn-lg btn-info"
-                type="submit"
-                color="secondary"
-                aria-label="Left Align"
-              >
-                Sign In
-              </Button>
-            </Link>
-          </Col>
-        </div>
-      </div>
+       </div> 
     );
   }
 }

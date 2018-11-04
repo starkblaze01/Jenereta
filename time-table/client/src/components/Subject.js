@@ -18,15 +18,13 @@ function RenderComponent({ selectedOption }) {
               placeholder="Subject Name"
             />
           </Col>
-        </Row>
-
-        <Row>
-          <Col md={{ size: 4, offset: 3 }}>
-            <Button type="submit" color="secondary" className="mt-4 btn-lg">
+          <Col md={{ size: 1, offset: 0.5 }}>
+            <Button type="submit" color="primary">
               Add
             </Button>
           </Col>
         </Row>
+
       </div>
     );
   } else {
@@ -34,7 +32,7 @@ function RenderComponent({ selectedOption }) {
       <div className="mt-5">
         <Row>
           <Col md={{ size: 3, offset: 1 }}>
-            <Label>Subject Name</Label>
+            <Label className="labelname">Subject Name</Label>
           </Col>
           <Col md={7}>
             <Input
@@ -48,7 +46,7 @@ function RenderComponent({ selectedOption }) {
 
         <Row className="mt-4">
           <Col md={{ size: 3, offset: 1 }}>
-            <Label>Number of Available Labs</Label>
+            <Label className="labelname">Number of Available Labs</Label>
           </Col>
           <Col md={7}>
             <Input
@@ -58,11 +56,8 @@ function RenderComponent({ selectedOption }) {
               placeholder="No. of labs for this subject"
             />
           </Col>
-        </Row>
-
-        <Row>
-          <Col md={{ size: 4, offset: 3 }}>
-            <Button type="submit" color="secondary" className="mt-4 btn-lg">
+          <Col md={{ size: 1, offset: 0.5 }}>
+            <Button type="submit" color="primary">
               Add
             </Button>
           </Col>
@@ -99,7 +94,7 @@ class Subject extends Component {
 
           <Col sm="9">
             <div className="container mt-5 show">
-              <h2>Add Subjects</h2>
+              <h2 id="addsub"> Add Subjects</h2>
               <div className="radio choice mt-5">
                 <Label>
                   <input

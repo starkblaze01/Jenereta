@@ -13,10 +13,10 @@ class Teacher extends Component {
 
           <Col sm="9">
             <div className="container mt-5 show">
-              <h2>Add Teachers</h2>
+              <h2 id="addteacher">Add Teachers</h2>
               <Row className="mt-5">
                 <Col md={{ size: 3, offset: 1 }}>
-                  <Label>Teacher Name</Label>
+                  <Label className="labelname">Teacher Name</Label>
                 </Col>
                 <Col md={7}>
                   <Input
@@ -26,15 +26,8 @@ class Teacher extends Component {
                     placeholder="Name"
                   />
                 </Col>
-              </Row>
-
-              <Row>
-                <Col md={{ size: 4, offset: 3 }}>
-                  <Button
-                    type="submit"
-                    color="secondary"
-                    className="mt-4 btn-lg"
-                  >
+                <Col md={{ size: 1, offset: 0.5 }}>
+                  <Button type="submit" color="primary">
                     Add
                   </Button>
                 </Col>
