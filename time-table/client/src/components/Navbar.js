@@ -50,7 +50,7 @@ class Header extends Component {
         {/* <NavLink className="nav-link right" to="/SignIn"> */}
         <span
           onClick={this.onLogoutClick}
-          className="fa fa-sign-out nav-link fa-lg"
+          className="fa fa-sign-out nav-link right fa-lg"
         >
           <img
             className="rounded-circle"
@@ -68,16 +68,16 @@ class Header extends Component {
 
     const guestLinks = (
       <Navbar>
-        <NavItem>
+        <span>
           <NavLink className="nav-link right" to="/SignIn">
             <span className="fa fa-sign-in fa-lg">Sign In</span>
           </NavLink>
-        </NavItem>
-        <NavItem>
+        </span>
+        <span>
           <NavLink className="nav-link right" to="/register">
             <span className="fa fa-plus fa-lg">Register</span>
           </NavLink>
-        </NavItem>
+        </span>
       </Navbar>
     );
 
