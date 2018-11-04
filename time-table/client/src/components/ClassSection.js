@@ -13,7 +13,7 @@ class ClassSection extends Component {
 
           <Col sm="9">
             <div className="container mt-5 show">
-              <h2>Add Class-Section</h2>
+              <h2 id="addclass">Add Class-Section</h2>
               <Row className="mt-5">
                 <Col md={{ size: 3, offset: 1 }}>
                   <Label>Class-Section</Label>
@@ -26,15 +26,8 @@ class ClassSection extends Component {
                     placeholder="eg. 5A"
                   />
                 </Col>
-              </Row>
-
-              <Row>
-                <Col md={{ size: 4, offset: 3 }}>
-                  <Button
-                    type="submit"
-                    color="secondary"
-                    className="mt-4 btn-lg"
-                  >
+                <Col md={{ size: 1, offset: 0.5 }}>
+                  <Button type="submit" color="primary">
                     Add
                   </Button>
                 </Col>

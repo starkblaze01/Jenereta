@@ -5,6 +5,7 @@ import About from "./About";
 import Register from "./Register";
 import SignIn from "./SignIn";
 import Footer from "./Footer";
+import "./compo.css";
 import CallAddBlank from "./CallAddBlank";
 import Subject from "./Subject";
 import Teacher from "./Teachers";

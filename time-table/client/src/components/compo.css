@@ -1,0 +1,88 @@
+.mt-2 {
+    background-color: #17a2b8;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.3s;
+    /* Safari */
+    transition-duration: 0.3s;
+}
+
+.mt-2:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    background-color: #17a2b8;
+}
+
+.Login {
+    margin: 18% auto 20% auto;
+}
+
+.page {
+    min-height: 100vh;
+}
+
+.imagespace {
+    margin-top: 20%;
+}
+
+ #ttlogo2 {
+     margin-top: 33.33%;
+     border-radius: 50%;
+ }
+
+.footer {
+    width: 100%;
+    background-color: #cbd6e2;
+    bottom: 0px;
+    padding: 5px 0px 5px 0px;
+}
+
+.verticalspace {
+    margin-top: 15%;
+}
+
+.forcolor {
+    background-color: #4c6184;
+    /* width: 350px; */
+}
+
+#addclass {
+  margin-top: 10%;
+}
+
+#addteacher {
+    margin-top: 10%;
+}
+
+#addsub {
+    margin-top: 10%;
+}
+
+#addslot {
+    margin-top: 10%;
+}
+
+.labelname {
+    float: left;
+    margin-left: 1%;
+    padding-top: 8px;
+}
+
+.dayname {
+    float: left;
+}
+
+.form-control {
+    padding: 0.375rem 0.45rem;
+}
+
+#subjectadd {
+    display: inline-block;
+}

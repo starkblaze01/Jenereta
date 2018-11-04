@@ -100,8 +100,5 @@ a:link {
 }
 
 .show {
-  height: 90%;
-  overflow-y: scroll;
-  position: absolute;
   margin-bottom: 10px;
 }

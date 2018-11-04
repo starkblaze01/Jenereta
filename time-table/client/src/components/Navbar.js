@@ -5,6 +5,7 @@ import { logoutUser } from "../actions/authActions";
 
 import {
   Nav,
+  Button,
   Navbar,
   NavbarBrand,
   NavbarToggler,
@@ -68,49 +69,69 @@ class Header extends Component {
 
     const guestLinks = (
       <Navbar>
-        <span>
-          <NavLink className="nav-link right" to="/SignIn">
-            <span className="fa fa-sign-in fa-lg">Sign In</span>
-          </NavLink>
-        </span>
-        <span>
-          <NavLink className="nav-link right" to="/register">
-            <span className="fa fa-plus fa-lg">Register</span>
-          </NavLink>
-        </span>
+        <Nav right>
+                  <NavItem>
+                    <NavLink to={`/register`}>
+                      <Button id="button1"
+                      className = "w3-button btn-info"
+                      type="submit"
+                      color="secondary"
+                      >
+                      Register
+                      </Button>
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink to={`/SignIn`}>
+                      <Button id="button2"
+                      className="w3-button btn-info"
+                      type="submit"
+                      color="secondary"
+                      >
+                      Sign In
+                      </Button>
+                    </NavLink>
+                  </NavItem>   
+              </Nav>
       </Navbar>
     );
 
     return (
       <React.Fragment>
-        <Navbar dark color="success" expand="md">
+        <Navbar dark color="success" expand="lg" fixed="top" scrolling-navbar>
           <div className="container">
             <NavbarToggler onClick={this.togggleNav} />
             <NavbarBrand className="mr-auto" href="/">
-              <img
-                src="assets/timetable-logo.png"
-                height="30"
-                width="41"
+              <img id="jenereta"
+                src = "assets/ttlogo5.png"
+                height="40"
+                width="40"
                 alt="TimeTable Generator"
               />
             </NavbarBrand>
             <Collapse isOpen={this.state.isNavOpen} navbar>
-              <Nav navbar>
-                <NavItem>
-                  <NavLink className="nav-link" to="/home">
-                    <span className="fa fa-home fa-lg"> Home</span>
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink className="nav-link" to="/aboutus">
-                    <span className="fa fa-info fa-lg"> About Us</span>
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink className="nav-link" to="/faq">
-                    <span className="fa fa-question-circle fa-lg"> FAQ</span>
-                  </NavLink>
-                </NavItem>
+                <Nav navbar left>
+                    <NavItem>
+                      <NavLink className="nav-link"
+                        data-analytics="NavBarDomains" 
+                        to="/home">
+                          <span className="fa fa-lg"> Home</span>
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      < NavLink className = "nav-link"
+                        data-analytics = "NavBarDomains" 
+                        to = "/aboutus" >
+                          <span className="fa fa-lg"> About Us</span>
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      < NavLink className = "nav-link"
+                        data-analytics = "NavBarDomains" 
+                        to = "/faq" >
+                          <span className="fa fa-lg"> Faq</span>
+                      </NavLink>
+                  </NavItem>
               </Nav>
               {isAuthenticated ? authLinks : guestLinks}
             </Collapse>
