@@ -13,6 +13,7 @@ class CallAddBlank extends Component {
           <Col sm="9">
             <div className="container opacityblank page">
               <img
+                alt="logo"
                 src="./assets/timetable-logo.png"
                 align="middle"
                 className="img-fluid imagespace"

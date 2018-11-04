@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 import classnames from "classnames";
+import { connect } from "react-redux";
+import { registerUser } from "../actions/authActions";
 
 import {
   Button,
@@ -35,6 +38,18 @@ class Register extends Component {
     //   this.handleBlur = this.handleBlur.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/calladdblank");
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   handleInputChange(event) {
     // const target = event.target;
     // const value = target.value;
@@ -55,10 +70,7 @@ class Register extends Component {
       password: this.state.password,
       confirmpassword: this.state.confirmpassword
     };
-    axios
-      .post("/api/users/register", newUser)
-      .then(res => console.log(res.data))
-      .catch(err => this.setState({ errors: err.response.data }));
+    this.props.registerUser(newUser, this.props.history);
   }
 
   // handleBlur = field => evt => {
@@ -75,6 +87,7 @@ class Register extends Component {
     //   this.state.confirmpassword
     // );
     const { errors } = this.state;
+
     return (
       <div className="container page">
         <div className="verticalspace">
@@ -82,7 +95,6 @@ class Register extends Component {
             <div className="col-12 mb-3">
               <h2>Sign Up</h2>
             </div>
-
             <div className="col-12 col-md-9">
               <Form onSubmit={this.handleSubmit}>
                 <FormGroup row>
@@ -228,4 +240,18 @@ class Register extends Component {
   }
 }
 
-export default Register;
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(Register));
