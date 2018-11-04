@@ -1,6 +1,6 @@
 import React from "react";
 import { SideNav, Nav } from "react-sidenav";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../index.css";
 
 const Sidenav = () => (

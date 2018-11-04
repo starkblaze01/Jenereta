@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import { Jumbotron, Button, Col } from "reactstrap";
 import { Link } from "react-router-dom";
+import { PropTypes } from "prop-types";
+import { connect } from "react-redux";
 
 class Home extends Component {
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/calladdblank");
+    }
+  }
+
   render() {
     return (
       <div className="page">
@@ -62,4 +70,12 @@ class Home extends Component {
   }
 }
 
-export default Home;
+Home.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps)(Home);
