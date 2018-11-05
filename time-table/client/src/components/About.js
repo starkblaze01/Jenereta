@@ -16,11 +16,11 @@ function About() {
                       <strong class="name">Aman Yadav</strong>
                       <br/>
                       <span class="social-media">
-                        <a href="https://www.facebook.com/PublicLab/" title="LinkedIn">
-                        < i class="fa fa-linkedin-square"></i></a> &nbsp;
-                        <a href="https://twitter.com/PublicLab?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" title="Twitter">
+                        <a href="https://www.linkedin.com/in/aman-yadav-4880bb152" title="LinkedIn">
+                        <i class="fa fa-linkedin-square"></i></a> &nbsp;
+                        <a href="https://twitter.com/AmanYad64272121" title="Twitter">
                         <i class="fa fa-twitter"></i></a> &nbsp;
-                        <a href="https://github.com/publiclab" title="GitHub"><i class="fa fa-github"></i></a>
+                        <a href="https://github.com/amany9000" title="GitHub"><i class="fa fa-github"></i></a>
                       </span>
                 </CardTitle>
               </CardBody>
@@ -35,11 +35,11 @@ function About() {
                       <strong class="name">Nikhil Sachan</strong>
                       <br/>
                       <span class="social-media">
-                       <a href="https://www.facebook.com/PublicLab/" title="LinkedIn">
-                       < i class="fa fa-linkedin-square"></i></a> &nbsp;
-                       <a href="https://twitter.com/PublicLab?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" title="Twitter">
+                       <a href = "https://www.linkedin.com/in/nikhil-sachan-5184b9155" title = "LinkedIn">
+                       <i class="fa fa-linkedin-square"></i></a> &nbsp;
+                       <a href = "https://twitter.com/NikhilSachan17" title="Twitter">
                        <i class="fa fa-twitter"></i></a> &nbsp;
-                       <a href="https://github.com/publiclab" title="GitHub"><i class="fa fa-github"></i></a>
+                       <a href = "https://github.com/nikhilsachan007" title = "GitHub" > < i class = "fa fa-github"></i></a>
                        </span>
                 </CardTitle>
               </CardBody>
@@ -54,11 +54,11 @@ function About() {
                       <strong class="name">Daksh Gondaliya</strong>
                       <br/>
                       <span class="social-media">
-                       <a href="https://www.facebook.com/PublicLab/" title="LinkedIn">
+                       <a href="https://www.linkedin.com/in/daksh-gondaliya-64625615b/" title="LinkedIn">
                        < i class="fa fa-linkedin-square"></i></a> &nbsp;
-                       <a href="https://twitter.com/PublicLab?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" title="Twitter">
+                       <a href="https://twitter.com/gondaliyadaksh" title="Twitter">
                        <i class="fa fa-twitter"></i></a> &nbsp;
-                       <a href="https://github.com/publiclab" title="GitHub"><i class="fa fa-github"></i></a>
+                       <a href="https://github.com/DakshGondaliya" title="GitHub"><i class="fa fa-github"></i></a>
                        </span>
                 </CardTitle>
               </CardBody>
@@ -75,11 +75,11 @@ function About() {
                       <strong class="name">Mayank Pathela</strong>
                       <br/>
                       <span class="social-media">
-                       <a href="https://www.facebook.com/PublicLab/" title="LinkedIn">
+                       <a href="https://www.linkedin.com/in/mayank-pathela-1a165b154/" title="LinkedIn">
                        < i class="fa fa-linkedin-square"></i></a> &nbsp;
-                       <a href="https://twitter.com/PublicLab?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" title="Twitter">
+                       <a href="https://twitter.com/StarkBlaze01" title="Twitter">
                        <i class="fa fa-twitter"></i></a> &nbsp;
-                       <a href="https://github.com/publiclab" title="GitHub"><i class="fa fa-github"></i></a>
+                       <a href="https://github.com/starkblaze01" title="GitHub"><i class="fa fa-github"></i></a>
                        </span>
                 </CardTitle>
               </CardBody>
@@ -94,11 +94,11 @@ function About() {
                       <strong class="name">Kirtika Singhal</strong>
                       <br/>
                       <span class="social-media">
-                       <a href="https://www.facebook.com/PublicLab/" title="LinkedIn">
-                       < i class="fa fa-linkedin-square"></i></a> &nbsp;
-                       <a href="https://twitter.com/PublicLab?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" title="Twitter">
+                       <a href="https://www.linkedin.com/in/kirtika-singhal-30371416a/" title="LinkedIn">
+                       <i class="fa fa-linkedin-square"></i></a> &nbsp;
+                       <a href="https://twitter.com/Kirtika_28" title="Twitter">
                        <i class="fa fa-twitter"></i></a> &nbsp;
-                       <a href="https://github.com/publiclab" title="GitHub"><i class="fa fa-github"></i></a>
+                       <a href="https://github.com/singhalkirtika" title="GitHub"><i class="fa fa-github"></i></a>
                        </span>
                 </CardTitle>
               </CardBody>
@@ -113,11 +113,11 @@ function About() {
                       <strong class="name">Parmeshwar Kumwat</strong>
                       <br/>
                       <span class="social-media">
-                       <a href="https://www.facebook.com/PublicLab/" title="LinkedIn">
+                       <a href="https://www.linkedin.com/in/parmeshwar-kumawat-822940174" title="LinkedIn">
                        < i class="fa fa-linkedin-square"></i></a> &nbsp;
-                       <a href="https://twitter.com/PublicLab?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" title="Twitter">
+                       <a href="https://www.twitter.com/parmesh68397990" title="Twitter">
                        <i class="fa fa-twitter"></i></a> &nbsp;
-                       <a href="https://github.com/publiclab" title="GitHub"><i class="fa fa-github"></i></a>
+                       <a href="https://www.github.com/parmeshwar01" title="GitHub"><i class="fa fa-github"></i></a>
                        </span>
                 </CardTitle>
               </CardBody>
