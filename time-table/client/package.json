@@ -1,0 +1,50 @@
+{
+  "name": "time-table",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.1.3",
+    "bootstrap-social": "^5.1.1",
+    "classnames": "^2.2.6",
+    "express": "^4.16.4",
+    "font-awesome": "^4.7.0",
+    "jsonwebtoken": "^8.3.0",
+    "jwt-decode": "^2.2.0",
+    "mongoose": "^5.3.4",
+    "npm": "^6.4.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-popper": "^1.0.2",
+    "react-radio-group": "^3.0.3",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.0.3",
+    "react-sidenav": "^3.1.3",
+    "reactstrap": "^6.5.0",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^4.0.2",
+    "validator": "^10.8.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "proxy": "http://localhost:5000"
+}
