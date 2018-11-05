@@ -18,7 +18,7 @@ function About() {
                       <span class="social-media">
                         <a href="https://www.linkedin.com/in/aman-yadav-4880bb152" title="LinkedIn">
                         <i class="fa fa-linkedin-square"></i></a> &nbsp;
-                        <a href="https://mobile.twitter.com/AmanYad64272121" title="Twitter">
+                        <a href="https://twitter.com/AmanYad64272121" title="Twitter">
                         <i class="fa fa-twitter"></i></a> &nbsp;
                         <a href="https://github.com/amany9000" title="GitHub"><i class="fa fa-github"></i></a>
                       </span>
