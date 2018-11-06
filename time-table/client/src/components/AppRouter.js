@@ -10,7 +10,10 @@ import CallAddBlank from "./CallAddBlank";
 import Subject from "./Subject";
 import Teacher from "./Teachers";
 import ClassSection from "./ClassSection";
+import Dashboard from "./dashboard/Dashboard";
 import SlotDetail from "./SlotDetails";
+import CreateProfile from "./create-profile/CreateProfile";
+import PrivateRoute from "./common/PrivateRoute";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 class AppRouter extends Component {
@@ -23,11 +26,17 @@ class AppRouter extends Component {
           <Route path="/register" component={Register} />
           <Route path="/aboutus" component={About} />
           <Route path="/SignIn" component={SignIn} />
-          <Route exact path="/calladdblank" component={CallAddBlank} />
-          <Route path="/subject" component={Subject} />
-          <Route path="/teacher" component={Teacher} />
-          <Route path="/classSection" component={ClassSection} />
-          <Route path="/slotdetails" component={SlotDetail} />
+          <PrivateRoute
+            exact
+            path="/create-profile"
+            component={CreateProfile}
+          />
+          <PrivateRoute exact path="/calladdblank" component={CallAddBlank} />
+          <PrivateRoute exact path="/subject" component={Subject} />
+          <PrivateRoute exact path="/teacher" component={Teacher} />
+          <PrivateRoute exact path="/classSection" component={ClassSection} />
+          <PrivateRoute exact path="/slotdetails" component={SlotDetail} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <Redirect to="/home" />
         </Switch>
         <Footer />

@@ -1,7 +1,11 @@
-import { TEACHER_LOADING, GET_TEACHER } from "../actions/types";
+import {
+  TEACHER_LOADING,
+  GET_TEACHER,
+  CLEAR_CURRENT_TEACHER
+} from "../actions/types";
 
 const initialState = {
-  profile: null,
+  teacher: null,
   loading: false
 };
 
@@ -15,7 +19,13 @@ export default function(state = initialState, action) {
     case GET_TEACHER:
       return {
         ...state,
+        teacher: action.payload,
         loading: false
+      };
+    case CLEAR_CURRENT_TEACHER:
+      return {
+        ...state,
+        teacher: null
       };
     default:
       return state;

@@ -22,9 +22,9 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const errors = {};
-
     Profile.findOne({ user: req.user.id })
       .then(profile => {
+        // console.log(profile);
         if (!profile) {
           errors.noprofile = "There is no profile for this user";
           return res.status(404).json(errors);
@@ -56,6 +56,7 @@ router.post(
     if (req.body.institute) profileFields.institute = req.body.institute;
     if (req.body.institutewebsite)
       profileFields.institutewebsite = req.body.institutewebsite;
+    //console.log(profileFields);
 
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
@@ -69,12 +70,7 @@ router.post(
         //Create
         //Save Profile
         Profile.findOne({ user: req.user.id }).then(profile => {
-          new Profile({
-            institute: profileFields.institute,
-            institutewebsite: profileFields.institutewebsite
-          })
-            .save()
-            .then(profile => res.json(profile));
+          new Profile(profileFields).save().then(profile => res.json(profile));
         });
       }
     });
