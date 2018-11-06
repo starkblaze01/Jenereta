@@ -81,8 +81,8 @@ h1 {
 
 .navbar-nav .nav-link.active {
     /* border-bottom: 3px solid #0d47a1; */
-    border-bottom: 3px solid #1568e6;
-}
+     border-bottom: 3px solid #1568e6; 
+ } 
 
 .nav-link {
     box-sizing: border-box;
@@ -197,8 +197,7 @@ footer {
 
 .mt-4 {
     margin-top: 5rem !important;
-    font-family: 'Montserrat',
-        sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 100;
 }
 
@@ -256,4 +255,14 @@ footer {
         opacity: 1;
         transform: translate(0);
     }
+}
+
+.mt-8 {
+    margin-top: 1rem !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+}
+
+.form-control {
+    margin-bottom: 0.5rem;
 }
