@@ -25,11 +25,34 @@ export const getCurrentTeacher = () => dispatch => {
     });
 };
 
+// Delete Teacher's Name
+export const deleteTeacher = tcr => dispatch => {
+  axios
+    .delete(`/api/teachersName/${tcr}`)
+    .then(res =>
+      dispatch({
+        type: GET_TEACHER,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 // Create Teacher
 export const createTeacher = (teacherData, history) => dispatch => {
   axios
     .post("/api/teachersName", teacherData)
-    .then(res => history.push("/teacher"))
+    .then(res =>
+      dispatch({
+        type: GET_TEACHER,
+        payload: res.data
+      })
+    )
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

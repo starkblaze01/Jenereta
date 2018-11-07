@@ -45,7 +45,7 @@ class Header extends Component {
     const { isAuthenticated, user } = this.props.auth;
 
     const authLinks = (
-      <Navbar>
+      <Navbar right>
         <span>
           <NavLink className="nav-link right" to="/dashboard">
             <span className="fa fa-address-book fa-lg">Profile</span>

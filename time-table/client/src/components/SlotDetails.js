@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Label, Col, Row, Input, Form, FormGroup } from "reactstrap";
-import { Radio, RadioGroup } from "react-radio-group";
+//import { Radio, RadioGroup } from "react-radio-group";
 import Sidenav from "./SideNav";
 import "../index.css";
 
@@ -11,7 +11,9 @@ function RenderComponent({ selectedOption, handleSubmit, handleInputChange }) {
         <Form onSubmit={handleSubmit}>
           <FormGroup row>
             <Col md={{ size: 2, offset: 3 }}>
-              <Label className="dayname" htmlFor="monday">Monday</Label>
+              <Label className="dayname" htmlFor="monday">
+                Monday
+              </Label>
             </Col>
             <Col md={4}>
               <Input
@@ -25,7 +27,9 @@ function RenderComponent({ selectedOption, handleSubmit, handleInputChange }) {
 
           <FormGroup row>
             <Col md={{ size: 2, offset: 3 }}>
-              <Label className="dayname" htmlFor="tuesday">Tuesday</Label>
+              <Label className="dayname" htmlFor="tuesday">
+                Tuesday
+              </Label>
             </Col>
             <Col md={4}>
               <Input
@@ -39,7 +43,9 @@ function RenderComponent({ selectedOption, handleSubmit, handleInputChange }) {
 
           <FormGroup row>
             <Col md={{ size: 2, offset: 3 }}>
-              <Label className="dayname" htmlFor="wednesday">Wednesday</Label>
+              <Label className="dayname" htmlFor="wednesday">
+                Wednesday
+              </Label>
             </Col>
             <Col md={4}>
               <Input
@@ -53,7 +59,9 @@ function RenderComponent({ selectedOption, handleSubmit, handleInputChange }) {
 
           <FormGroup row>
             <Col md={{ size: 2, offset: 3 }}>
-              <Label className="dayname" htmlFor="thursday">Thursday</Label>
+              <Label className="dayname" htmlFor="thursday">
+                Thursday
+              </Label>
             </Col>
             <Col md={4}>
               <Input
@@ -67,7 +75,9 @@ function RenderComponent({ selectedOption, handleSubmit, handleInputChange }) {
 
           <FormGroup row>
             <Col md={{ size: 2, offset: 3 }}>
-              <Label className="dayname" htmlFor="friday">Friday</Label>
+              <Label className="dayname" htmlFor="friday">
+                Friday
+              </Label>
             </Col>
             <Col md={4}>
               <Input
@@ -81,7 +91,9 @@ function RenderComponent({ selectedOption, handleSubmit, handleInputChange }) {
 
           <FormGroup row>
             <Col md={{ size: 2, offset: 3 }}>
-              <Label className="dayname" htmlFor="saturday">Saturday</Label>
+              <Label className="dayname" htmlFor="saturday">
+                Saturday
+              </Label>
             </Col>
             <Col md={4}>
               <Input
@@ -150,11 +162,11 @@ class SlotDetail extends Component {
     this.handleOptionChange = this.handleOptionChange.bind(this);
   }
 
-   handleOptionChange(event) {
-     this.setState({
-       selectedOption: event.target.value
-     });
-   }
+  handleOptionChange(event) {
+    this.setState({
+      selectedOption: event.target.value
+    });
+  }
 
   // handleOptionChange(value) {
   //   this.setState({

@@ -8,13 +8,14 @@ import Footer from "./Footer";
 import "./compo.css";
 import CallAddBlank from "./CallAddBlank";
 import Subject from "./Subject";
-import Teacher from "./Teachers";
+import Teachers from "./Teachers";
 import ClassSection from "./ClassSection";
 import Dashboard from "./dashboard/Dashboard";
 import SlotDetail from "./SlotDetails";
 import CreateProfile from "./create-profile/CreateProfile";
 import PrivateRoute from "./common/PrivateRoute";
 import { Switch, Route, Redirect } from "react-router-dom";
+import EditProfile from "./edit-profile/EditProfile";
 
 class AppRouter extends Component {
   render() {
@@ -33,10 +34,11 @@ class AppRouter extends Component {
           />
           <PrivateRoute exact path="/calladdblank" component={CallAddBlank} />
           <PrivateRoute exact path="/subject" component={Subject} />
-          <PrivateRoute exact path="/teacher" component={Teacher} />
+          <PrivateRoute exact path="/teacher" component={Teachers} />
           <PrivateRoute exact path="/classSection" component={ClassSection} />
           <PrivateRoute exact path="/slotdetails" component={SlotDetail} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute exact path="/edit-profile" component={EditProfile} />
           <Redirect to="/home" />
         </Switch>
         <Footer />
