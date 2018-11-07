@@ -1,13 +1,19 @@
 import React, { Component } from "react";
-import { Button, Label, Col, Row, Input, Form } from "reactstrap";
+import { Button, Label, Col, Row, Input, FormFeedback, Form } from "reactstrap";
 import Sidenav from "./SideNav";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getCurrentTeacher, createTeacher } from "../actions/teacherActions";
+import classnames from "classnames";
+import Teacher from "./Teacher";
+import {
+  getCurrentTeacher,
+  createTeacher,
+  deleteTeacher
+} from "../actions/teacherActions";
 import Spinner from "./common/Spinner";
 
-class Teacher extends Component {
+class Teachers extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,6 +35,10 @@ class Teacher extends Component {
     this.props.getCurrentTeacher();
   }
 
+  onDeleteClick(e) {
+    this.props.deleteTeacher();
+  }
+
   onSubmit(e) {
     e.preventDefault();
 
@@ -36,9 +46,14 @@ class Teacher extends Component {
       teachersName: this.state.teachersName
     };
     this.props.createTeacher(teacherData, this.props.history);
+    // this.forceUpdate();
+    this.setState({
+      teachersName: "",
+      errors: {}
+    });
   }
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.vaule });
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
@@ -50,8 +65,12 @@ class Teacher extends Component {
       teacherContent = <Spinner />;
     } else {
       // Check if logged in user has teacher data
-      if (Object.keys(teacher) > 0) {
-        teacherContent = <h4>TODO</h4>;
+      if (Object.keys(teacher).length > 0) {
+        teacherContent = (
+          <div>
+            <Teacher teachers={teacher.teachersName} />
+          </div>
+        );
       } else {
         //User is logged in but has no teacher
         teacherContent = (
@@ -59,7 +78,7 @@ class Teacher extends Component {
             <div>
               <p className="lead text-muted">Welcome {user.name}</p>
               <p>You do not have any Teacher's Name, please add some </p>
-              {/* <Link to="/creat-profile" className="btn btn-lg btn-info">
+              {/* <Link to="/create-profile" className="btn btn-lg btn-info">
               Create Profile
             </Link> */}
             </div>
@@ -77,33 +96,35 @@ class Teacher extends Component {
           <Col sm="9">
             <div className="container mt-5 show">
               <h2 id="addteacher">Add Teachers</h2>
-              <Row className="mt-5">
-                <Col md={{ size: 3, offset: 1 }}>
-                  <Label className="labelname">Teacher Name</Label>
-                </Col>
+              <Form onSubmit={this.onSubmit}>
+                <Row className="mt-5">
+                  <Col md={{ size: 3, offset: 1 }}>
+                    <Label className="labelname">Teacher Name</Label>
+                  </Col>
 
-                <Col md={7}>
-                  <Input
-                    type="text"
-                    // id="teacherName"
-                    name="teachersName"
-                    value={this.state.teachersName}
-                    placeholder="Teacher's Name"
-                    onChange={this.onChange}
-                    error={errors.teachersName}
-                    info="Please use comma seperated values if giving more than one Teacher's Name input together"
-                  />
-                </Col>
-                <Col md={{ size: 1, offset: 0.5 }}>
-                  <Button
-                    type="submit"
-                    color="primary"
-                    //onSubmit={this.onSubmit}
-                  >
-                    Add
-                  </Button>
-                </Col>
-              </Row>
+                  <Col md={7}>
+                    <Input
+                      type="text"
+                      id="teacherName"
+                      name="teachersName"
+                      value={this.state.teachersName}
+                      placeholder="Teacher's Name"
+                      onChange={this.onChange}
+                      className={classnames(
+                        "fa fa-search form-control-feedback",
+                        { "is-invalid": errors.teachersName }
+                      )}
+                      title="Please use comma seperated values if giving more than one Teacher's Name input together"
+                    />
+                    <FormFeedback>{errors.teachersName}</FormFeedback>
+                  </Col>
+                  <Col md={{ size: 1, offset: 0.5 }}>
+                    <Button type="submit" color="primary">
+                      Add
+                    </Button>
+                  </Col>
+                </Row>
+              </Form>
               <Row
                 className="display-4"
                 style={{ marginLeft: 50, marginTop: 25 }}
@@ -118,8 +139,10 @@ class Teacher extends Component {
   }
 }
 
-Teacher.propTypes = {
+Teachers.propTypes = {
   getCurrentTeacher: PropTypes.func.isRequired,
+  createTeacher: PropTypes.func.isRequired,
+  deleteTeacher: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   teacher: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
@@ -133,5 +156,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getCurrentTeacher, createTeacher }
-)(withRouter(Teacher));
+  { getCurrentTeacher, createTeacher, deleteTeacher }
+)(withRouter(Teachers));

@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { Input, Label, Form, FormFeedback } from "reactstrap";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import { createProfile } from "../../actions/profileActions";
+import { createProfile, getCurrentProfile } from "../../actions/profileActions";
+import isEmpty from "../../validation/is-empty";
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -18,9 +19,28 @@ class CreateProfile extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
+    }
+    if (nextProps.profile.profile) {
+      const profile = nextProps.profile.profile;
+
+      // If profile field doesn't exist, make empty string
+      profile.institute = !isEmpty(profile.institute) ? profile.institute : "";
+      profile.institutewebsite = !isEmpty(profile.institutewebsite)
+        ? profile.institutewebsite
+        : "";
+
+      // Set component fields state
+      this.setState({
+        institute: profile.institute,
+        institutewebsite: profile.institutewebsite
+      });
     }
   }
 
@@ -46,10 +66,8 @@ class CreateProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Create You Profile</h1>
-              <p className="lead text-center">
-                Let's get some information to make your profile.
-              </p>
+              <h1 className="display-4 text-center">Edit Profile</h1>
+
               {/* <small className="d-block pb-3">* = required fields</small> */}
               <Form onSubmit={this.onSubmit}>
                 <Label className="label">Institute Name: </Label>
@@ -81,6 +99,8 @@ class CreateProfile extends Component {
 }
 
 CreateProfile.propTypes = {
+  createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -92,5 +112,5 @@ const mapToStateProps = state => ({
 
 export default connect(
   mapToStateProps,
-  { createProfile }
+  { createProfile, getCurrentProfile }
 )(CreateProfile);

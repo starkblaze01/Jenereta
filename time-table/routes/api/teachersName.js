@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 
-const validateTeachersNameInput = require("../../validation/profile");
+const validateTeachersNameInput = require("../../validation/teachersName");
 
 // Load TeachersName Model
 const TeachersName = require("../../models/TeachersName");
@@ -57,10 +57,15 @@ router.post(
     //Split into array
     if (typeof req.body.teachersName !== "undefined") {
       teachersNameFields.teachersName = req.body.teachersName.split(",");
-      teachersNameFields.teachersName.forEach(teacher => {
-        teacher = teacher.trim();
-        // console.log(teacher);
-      });
+      for (var i = 0; i < teachersNameFields.teachersName.length; i++) {
+        teachersNameFields.teachersName[i] = teachersNameFields.teachersName[
+          i
+        ].trim();
+      }
+      // teachersNameFields.teachersName.forEach(teacher => {
+      //   teacher = teacher.trim();
+      //   // console.log(teacher);
+      // });
     }
 
     TeachersName.findOne({ user: req.user.id }).then(teachersName => {
@@ -68,11 +73,14 @@ router.post(
         // Update
         teachersNameFields.teachersName.forEach(teacher => {
           if (teachersName.teachersName.includes(teacher)) {
-            return res.json({ msg: "Teacher's Name already Exist" });
+            errors.teachersName = "Teacher's Name already exists";
+            return res.status(400).json(errors);
+            //return res.json({ msg: "Teacher's Name already Exist" });
           } else {
+            //console.log(teachersNameFields);
             TeachersName.findOneAndUpdate(
               { user: req.user.id },
-              { $push: { teachersName: teachersNameFields.teachersName } },
+              { $push: { teachersName: teacher } },
               { new: true }
             )
               .then(teachersName => res.json(teachersName))
@@ -96,27 +104,31 @@ router.post(
 // @desc        Delete teachersName
 // @access      Private
 router.delete(
-  "/name",
+  "/:tcr",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    TeachersName.findOneAndUpdate(
-      { user: req.user.id },
-      { $pull: { teachersName: req.body.teachersName } },
-      { new: true }
-    )
-      .then(
-        teachersName => res.json(teachersName)
-        // //GET remove index
-        // const removeIndex = teachersName.teachersName
-        //   .map(item => item.id)
-        //   .indexOf(req.params.teachersName);
+    // TeachersName.findOneAndUpdate(
+    //   { user: req.user.id },
+    //   { $pull: { teachersName: req.params.teachersName } },
+    //   { new: true }
+    // )
+    //   .then(
+    //     teachersName => res.json(teachersName)
 
-        // //Spile out of array
-        // teachersName.teachersName.splice(removeIndex, 1);
+    //   )
+    TeachersName.findOne({ user: req.user.id })
+      .then(teachersName => {
+        //GET remove index
+        const removeIndex = teachersName.teachersName
+          .map(item => item)
+          .indexOf(req.params.tcr);
 
-        // //Save
-        // teachersName.save().then(teachersName => res.json(teachersName));
-      )
+        //Splice out of array
+        teachersName.teachersName.splice(removeIndex, 1);
+
+        //Save
+        teachersName.save().then(teachersName => res.json(teachersName));
+      })
       .catch(err => res.status(404).json(err));
   }
 );
