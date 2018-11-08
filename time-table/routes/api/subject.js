@@ -3,7 +3,8 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 
-const validateSubjectInput = require("../../validation/profile");
+const validateSubjectInput = require("../../validation/subject");
+const validateLabInput = require("../../validation/lab");
 
 // Load Subject Model
 const Subject = require("../../models/Subject");
@@ -57,9 +58,12 @@ router.post(
     //Split into array
     if (typeof req.body.subject !== "undefined") {
       subjectFields.subject = req.body.subject.split(",");
-      subjectFields.subject.forEach(subjectname => {
-        subjectname = subjectname.trim();
-      });
+      for (var i = 0; i < subjectFields.subject.length; i++) {
+        subjectFields.subject[i] = subjectFields.subject[i].trim();
+        //subjectFields.subject.forEach(subjectname => {
+        // subjectname = subjectname.trim();
+        //});
+      }
     }
 
     Subject.findOne({ user: req.user.id }).then(subject => {
@@ -67,7 +71,9 @@ router.post(
         // Update
         subjectFields.subject.forEach(subjects => {
           if (subject.subject.includes(subjects)) {
-            return res.json({ msg: "Teacher's Name already Exist" });
+            errors.subject = "Subject Name already exists";
+            return res.status(400).json(errors);
+            //return res.json({ msg: "Subject Name already Exist" });
           } else {
             Subject.findOneAndUpdate(
               { user: req.user.id },
@@ -89,31 +95,64 @@ router.post(
   }
 );
 
-// @route       DELETE api/teachersName/:teacher_id
-// @desc        Delete teachersName
+// @route       POST api/subject
+// @desc        Create or edit subject
 // @access      Private
-router.delete(
-  "/subjectname",
+router.post(
+  "/labs",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Subject.findOneAndUpdate(
-      { user: req.user.id },
-      { $pull: { subject: req.body.subject } },
-      { new: true }
-    )
-      .then(
-        subject => res.json(subject)
-        // //GET remove index
-        // const removeIndex = teachersName.teachersName
-        //   .map(item => item.id)
-        //   .indexOf(req.params.teachersName);
+    const { errors, isValid } = validateLabInput(req.body);
 
-        // //Spile out of array
-        // teachersName.teachersName.splice(removeIndex, 1);
+    // check validation
+    if (!isValid) {
+      // Return any errors with 400 status
+      return res.status(400).json(errors);
+    }
 
-        // //Save
-        // teachersName.save().then(teachersName => res.json(teachersName));
-      )
+    Subject.findOne({ user: req.user.id }).then(subject => {
+      const newlab = {
+        labname: req.body.labname,
+        numberoflabs: req.body.numberoflabs
+      };
+
+      // Add to lab array
+      subject.lab.unshift(newlab);
+
+      subject.save().then(subject => res.json(subject));
+    });
+  }
+);
+
+// @route       DELETE api/Subject/:Subject_name
+// @desc        Delete Subject
+// @access      Private
+router.delete(
+  "/:sbj",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    // Subject.findOneAndUpdate(
+    //   { user: req.user.id },
+    //   { $pull: { subject: req.body.subject } },
+    //   { new: true }
+    // )
+    //   .then(
+    //     subject => res.json(subject)
+
+    //   )
+    Subject.findOneAndUpdate({ user: req.user.id })
+      .then(subject => {
+        //GET remove index
+        const removeIndex = subject.subject
+          .map(item => item)
+          .indexOf(req.params.sbj);
+
+        //Splice out of array
+        subject.subject.splice(removeIndex, 1);
+
+        //Save
+        subject.save().then(subject => res.json(subject));
+      })
       .catch(err => res.status(404).json(err));
   }
 );
