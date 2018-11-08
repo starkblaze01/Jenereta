@@ -116,7 +116,7 @@ router.delete(
     //     teachersName => res.json(teachersName)
 
     //   )
-    TeachersName.findOne({ user: req.user.id })
+    TeachersName.findOneAndUpdate({ user: req.user.id })
       .then(teachersName => {
         //GET remove index
         const removeIndex = teachersName.teachersName
