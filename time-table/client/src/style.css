@@ -52,21 +52,6 @@ body {
     font-size: 0.85em;
 }
 
-.fa-lg {
-    text-align: center;
-    /* color: #b7c9cc !important; */
-    padding-left: 1em;
-    padding-right: 1em;
-    text-decoration: none !important;
-    font-family: 'Lato', sans-serif;
-    font-size: 1.2em;
-    font-weight: 400;
-    text-decoration: none !important;
-    transition: background-color 0.2s;
-    text-transform: uppercase;
-    letter-spacing: -0.03em;
-}
-
 h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
@@ -79,15 +64,9 @@ h1 {
     color: #fff;
 }
 
-.navbar-nav .nav-link.active {
-    /* border-bottom: 3px solid #0d47a1; */
-     border-bottom: 3px solid #1568e6; 
- } 
-
 .nav-link {
     box-sizing: border-box;
     color: #b7c9cc;
-    display: inline-block;
     font-family: inherit;
     font-size: 14px;
     font-weight: 700;
