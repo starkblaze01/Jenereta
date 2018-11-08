@@ -3,9 +3,9 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 
-const validateClassAndsecInput = require("../../validation/profile");
+const validateClassAndsecInput = require("../../validation/classAndsec");
 
-// Load Profile Model
+// Load ClassAndsec Model
 const ClassAndsec = require("../../models/ClassAndsec");
 //Load User Model
 const User = require("../../models/Users");
@@ -57,21 +57,28 @@ router.post(
     //Split into array
     if (typeof req.body.classAndsec !== "undefined") {
       classAndsecFields.classAndsec = req.body.classAndsec.split(",");
-      classAndsecFields.classAndsec.forEach(classsec => {
-        classsec = classsec.trim();
-      });
+      for (var i = 0; i < classAndsecFields.classAndsec.length; i++) {
+        classAndsecFields.classAndsec[i] = classAndsecFields.classAndsec[
+          i
+        ].trim();
+      }
+      //classAndsecFields.classAndsec.forEach(classsec => {
+      //  classsec = classsec.trim();
+      //});
     }
 
     ClassAndsec.findOne({ user: req.user.id }).then(classAndsec => {
       if (classAndsec) {
         classAndsecFields.classAndsec.forEach(classsec => {
-          if (teachersName.teachersName.includes(classsec)) {
-            return res.json({ msg: "This Class Sec already Exist" });
+          if (classAndsec.classAndsec.includes(classsec)) {
+            errors.classAndsec = "This Class-Section already Exist";
+            return res.status(400).json(errors);
+            //return res.json({ msg: "This Class Sec already Exist" });
           } else {
             // Update
             ClassAndsec.findOneAndUpdate(
               { user: req.user.id },
-              { $push: { classAndsec: classAndsecFields.classAndsec } },
+              { $push: { classAndsec: classsec } },
               { new: true }
             )
               .then(classAndsec => res.json(classAndsec))
@@ -82,40 +89,41 @@ router.post(
         //Create
         //Save Profile
         ClassAndsec.findOne({ user: req.user.id }).then(classAndsec => {
-          new ClassAndsec(classAndsecFields).save.then(classAndsec =>
-            res.json(classAndsec)
-          );
+          new ClassAndsec(classAndsecFields)
+            .save()
+            .then(classAndsec => res.json(classAndsec));
         });
       }
     });
   }
 );
 
-// @route       DELETE api/teachersName/:teacher_id
-// @desc        Delete teachersName
+// @route       DELETE api/teachersName/:Class and sec
+// @desc        Delete classandsec
 // @access      Private
 router.delete(
-  "/class",
+  "/:class",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    ClassAndsec.findOneAndUpdate(
-      { user: req.user.id },
-      { $pull: { classAndsec: req.body.classAndsec } },
-      { new: true }
-    )
-      .then(
-        classAndsec => res.json(classAndsec)
-        // //GET remove index
-        // const removeIndex = teachersName.teachersName
-        //   .map(item => item.id)
-        //   .indexOf(req.params.teachersName);
+    // ClassAndsec.findOneAndUpdate(
+    //   { user: req.user.id },
+    //   { $pull: { classAndsec: req.body.classAndsec } },
+    //   { new: true }
+    // )
+    //   .then(classAndsec => res.json(classAndsec))
+    ClassAndsec.findOneAndUpdate({ user: req.user.id })
+      .then(classAndsec => {
+        //GET remove index
+        const removeIndex = classAndsec.classAndsec
+          .map(item => item)
+          .indexOf(req.params.class);
 
-        // //Spile out of array
-        // teachersName.teachersName.splice(removeIndex, 1);
+        //Spile out of array
+        classAndsec.classAndsec.splice(removeIndex, 1);
 
-        // //Save
-        // teachersName.save().then(teachersName => res.json(teachersName));
-      )
+        //Save
+        classAndsec.save().then(classAndsec => res.json(classAndsec));
+      })
       .catch(err => res.status(404).json(err));
   }
 );

@@ -7,6 +7,10 @@ import { Provider } from "react-redux";
 import store from "./store";
 import "./App.css";
 import AppRouter from "./components/AppRouter";
+import { clearCurrentProfile } from "./actions/profileActions";
+import { clearCurrentTeacher } from "./actions/teacherActions";
+import { clearCurrentSubject } from "./actions/subjectActions";
+import { clearCurrentClass } from "./actions/classActions";
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -21,6 +25,13 @@ if (localStorage.jwtToken) {
   if (decoded.exp < currentTime) {
     store.dispatch(logoutUser());
     // Clear current profile
+    store.dispatch(clearCurrentProfile());
+    // Clear current teacher
+    store.dispatch(clearCurrentTeacher());
+    // Clear current subject
+    store.dispatch(clearCurrentSubject());
+    // Clear current class
+    store.dispatch(clearCurrentClass());
     // Redirect to login
     window.location.href = "/SignIn";
   }

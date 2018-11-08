@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Jumbotron, Button, Col } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Jumbotron } from "reactstrap";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 
@@ -13,24 +12,28 @@ class Home extends Component {
 
   render() {
     return (
-       <div className="homepage">
+      <div className="homepage">
         <Jumbotron>
           <div className="container page">
             <div className="row row-header">
-                 <div className="col-12 col-md-6"> 
-              < div class = "intro text-center" >
-                < h1 class = "grand-title text-color-white title-text" > TimeTable Generator </h1>
-                <p class="white">
-                  The process of creating time-table is quite tedious and
-                  requires lots of human efforts. Time Table Generator aims to
-                  reduce the time and efforts of manually creating the
-                  timetable. It provides the most feasible solution by creating
-                  a timetable with minimum number of clashes.
-                </p>
-              </div>
-              </div> 
               <div className="col-12 col-md-6">
-                <img id="ttlogo"
+                <div className="intro text-center">
+                  <h1 className="grand-title text-color-white title-text">
+                    {" "}
+                    TimeTable Generator{" "}
+                  </h1>
+                  <p className="white">
+                    The process of creating time-table is quite tedious and
+                    requires lots of human efforts. Time Table Generator aims to
+                    reduce the time and efforts of manually creating the
+                    timetable. It provides the most feasible solution by
+                    creating a timetable with minimum number of clashes.
+                  </p>
+                </div>
+              </div>
+              <div className="col-12 col-md-6">
+                <img
+                  id="ttlogo"
                   alt="time-table"
                   src="assets/ttlogo5.png"
                   width="65%"
@@ -40,7 +43,7 @@ class Home extends Component {
             </div>
           </div>
         </Jumbotron>
-       </div> 
+      </div>
     );
   }
 }

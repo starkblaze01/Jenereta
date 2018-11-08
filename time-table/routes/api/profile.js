@@ -8,6 +8,12 @@ const validateProfileInput = require("../../validation/profile");
 const Profile = require("../../models/Profile");
 //Load User Model
 const User = require("../../models/Users");
+//Load Teacher Model
+const TeachersName = require("../../models/TeachersName");
+//Load Class Model
+const ClassAndsec = require("../../models/ClassAndsec");
+//Load Subject Model
+const Subject = require("../../models/Subject");
 
 // @route       GET api/profile/test
 // @desc        Tests profile route
@@ -22,9 +28,9 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const errors = {};
-
     Profile.findOne({ user: req.user.id })
       .then(profile => {
+        // console.log(profile);
         if (!profile) {
           errors.noprofile = "There is no profile for this user";
           return res.status(404).json(errors);
@@ -56,6 +62,7 @@ router.post(
     if (req.body.institute) profileFields.institute = req.body.institute;
     if (req.body.institutewebsite)
       profileFields.institutewebsite = req.body.institutewebsite;
+    //console.log(profileFields);
 
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
@@ -69,12 +76,7 @@ router.post(
         //Create
         //Save Profile
         Profile.findOne({ user: req.user.id }).then(profile => {
-          new Profile({
-            institute: profileFields.institute,
-            institutewebsite: profileFields.institutewebsite
-          })
-            .save()
-            .then(profile => res.json(profile));
+          new Profile(profileFields).save().then(profile => res.json(profile));
         });
       }
     });
@@ -89,9 +91,15 @@ router.delete(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOneAndRemove({ user: req.user.id }).then(() => {
-      User.findOneAndRemove(
-        { _id: req.user.id }.then(() => res.json({ success: true }))
-      );
+      TeachersName.findOneAndRemove({ user: req.user.id }).then(() => {
+        ClassAndsec.findOneAndRemove({ user: req.user.id }).then(() => {
+          Subject.findOneAndRemove({ user: req.user.id }).then(() => {
+            User.findOneAndRemove({ _id: req.user.id }).then(() =>
+              res.json({ success: true })
+            );
+          });
+        });
+      });
     });
   }
 );
