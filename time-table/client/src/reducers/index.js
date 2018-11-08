@@ -12,5 +12,5 @@ export default combineReducers({
   profile: profileReducer,
   teacher: teacherReducer,
   subject: subjectReducer,
-  class: classReducer
+  classes: classReducer
 });

@@ -100,7 +100,7 @@ router.post(
   }
 );
 
-// @route       DELETE api/teachersName/:teacher_id
+// @route       DELETE api/teachersName/:taecher_name
 // @desc        Delete teachersName
 // @access      Private
 router.delete(

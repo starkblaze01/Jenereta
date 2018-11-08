@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { deleteTeacher } from "../actions/teacherActions";
+import { deleteClass } from "../../actions/classActions";
 
-class Teacher extends Component {
-  onDeleteClick(tcr) {
-    this.props.deleteTeacher(tcr);
+class Class extends Component {
+  onDeleteClick(cls) {
+    this.props.deleteClass(cls);
   }
 
   render() {
-    const teachersName = this.props.teachers.map(tcr => (
-      <tr key={tcr}>
-        <td>{tcr}</td>
+    const section = this.props.section.map(cls => (
+      <tr key={cls}>
+        <td>{cls}</td>
         <td>
           <button
-            onClick={this.onDeleteClick.bind(this, tcr)}
+            onClick={this.onDeleteClick.bind(this, cls)}
             className="btn btn-danger"
           >
             Delete
@@ -28,22 +28,22 @@ class Teacher extends Component {
         <table>
           <thead>
             <tr>
-              <th>Teacher's Name</th>
+              <th>Class And Section</th>
               <th />
             </tr>
           </thead>
-          <tbody>{teachersName}</tbody>
+          <tbody>{section}</tbody>
         </table>
       </div>
     );
   }
 }
 
-Teacher.propTypes = {
-  deleteTeacher: PropTypes.func.isRequired
+Class.propTypes = {
+  deleteClass: PropTypes.func.isRequired
 };
 
 export default connect(
   null,
-  { deleteTeacher }
-)(Teacher);
+  { deleteClass }
+)(Class);
