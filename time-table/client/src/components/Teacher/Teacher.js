@@ -28,11 +28,11 @@ class Teacher extends Component {
         <table>
           <thead>
             <tr>
-              <th>Teacher's Name</th>
+              <th style={{ fontSize: "25px" }}>Teacher's Name</th>
               <th />
             </tr>
           </thead>
-          <tbody>{teachersName}</tbody>
+          <tbody style={{ fontSize: "20px" }}>{teachersName}</tbody>
         </table>
       </div>
     );

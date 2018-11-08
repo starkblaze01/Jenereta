@@ -57,10 +57,13 @@ class ClassSection extends Component {
       classContent = <Spinner />;
     } else {
       // Check if logged in user has class data
-      if (
-        Object.keys(classes) !== undefined &&
-        classes.classAndsec.length > 0
-      ) {
+      let a = false;
+      if (classes.classAndsec !== undefined) {
+        if (classes.classAndsec.length > 0) {
+          a = true;
+        }
+      }
+      if (Object.keys(classes).length > 0 && a) {
         classContent = (
           <div>
             <Class section={classes.classAndsec} />

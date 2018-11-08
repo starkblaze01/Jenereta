@@ -15,7 +15,7 @@ class Class extends Component {
         <td>
           <button
             onClick={this.onDeleteClick.bind(this, cls)}
-            className="btn btn-danger"
+            className="btn btn-danger btn-sm"
           >
             Delete
           </button>
@@ -28,11 +28,11 @@ class Class extends Component {
         <table>
           <thead>
             <tr>
-              <th>Class And Section</th>
+              <th style={{ fontSize: "25px" }}>Class And Section</th>
               <th />
             </tr>
           </thead>
-          <tbody>{section}</tbody>
+          <tbody style={{ fontSize: "20px" }}>{section}</tbody>
         </table>
       </div>
     );
