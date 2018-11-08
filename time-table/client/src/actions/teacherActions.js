@@ -61,7 +61,7 @@ export const createTeacher = teacherData => dispatch => {
     );
 };
 
-// Profile Loading
+// Teacher Loading
 export const setTeacherLoading = () => {
   return {
     type: TEACHER_LOADING

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Button, Label, Col, Row, Input, FormFeedback, Form } from "reactstrap";
-import Sidenav from "./SideNav";
+import Sidenav from "../SideNav";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import Teacher from "./Teacher";
-import { getCurrentTeacher, createTeacher } from "../actions/teacherActions";
-import Spinner from "./common/Spinner";
+import { getCurrentTeacher, createTeacher } from "../../actions/teacherActions";
+import Spinner from "../common/Spinner";
 
 class Teachers extends Component {
   constructor(props) {
@@ -56,7 +56,10 @@ class Teachers extends Component {
       teacherContent = <Spinner />;
     } else {
       // Check if logged in user has teacher data
-      if (teacher.teachersName.length > 0) {
+      if (
+        teacher.teachersName.length > 0 &&
+        typeof Object.keys(teacher) !== undefined
+      ) {
         teacherContent = (
           <div>
             <Teacher teachers={teacher.teachersName} />

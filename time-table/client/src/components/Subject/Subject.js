@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Label, Col, Row, Input } from "reactstrap";
-import Sidenav from "./SideNav";
+import Sidenav from "../SideNav";
 
 function RenderComponent({ selectedOption }) {
   if (selectedOption === "option1") {
@@ -24,7 +24,6 @@ function RenderComponent({ selectedOption }) {
             </Button>
           </Col>
         </Row>
-
       </div>
     );
   } else {
