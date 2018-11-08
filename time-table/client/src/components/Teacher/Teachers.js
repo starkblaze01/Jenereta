@@ -55,11 +55,14 @@ class Teachers extends Component {
     if (teacher === null || loading) {
       teacherContent = <Spinner />;
     } else {
+      let a = false;
       // Check if logged in user has teacher data
-      if (
-        teacher.teachersName.length > 0 &&
-        typeof Object.keys(teacher) !== undefined
-      ) {
+      if (teacher.teachersName !== undefined) {
+        if (teacher.teachersName.length > 0) {
+          a = true;
+        }
+      }
+      if (a && Object.keys(teacher).length > 0) {
         teacherContent = (
           <div>
             <Teacher teachers={teacher.teachersName} />
