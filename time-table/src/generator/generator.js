@@ -81,7 +81,7 @@ const generate = async (instaces, givenSlots, teachers, sections) => {
 	let regenerateListSec = {};
 	let notPossibleCount = 0;
 	let impossible = false; 
-	for(i=0; i < sections.length ;i++){ 
+	for(i=0; i < (sections.length ) ;i++){ 
 
 		if(impossible){
 			consle.log("Table Not Possible");
@@ -198,19 +198,20 @@ const generate = async (instaces, givenSlots, teachers, sections) => {
 							else{
 								regenerateListSI = secInstances[sections[i]][j].mapp[0];
 							}
-							console.log("regSI",regenerateCountSI, regenerateCountSec, regenerateListSI)
-							console.log("hey","i \t" , i, "j \t" ,j)
+							//console.log("regSI",regenerateCountSI, regenerateCountSI, regenerateListSI)
+							//console.log("hey","i \t" , i, "j \t" ,j)
 							for(let y in secInstances[sections[i]][j].mapp){
 								for(let w in secInstances[sections[i]][j].mapp.slot){
 									currentTT[secInstances[sections[i]][j].mapp[y].day][secInstances[sections[i]][j].mapp[y].slot[w]] = 0;
 									teacherTT[secInstances[sections[i]][j].teacher][secInstances[sections[i]][j].mapp[y].day][secInstances[sections[i]][j].mapp[y].slot[w]] = 0;									
 								}
-							}					
+							}
+							secInstances[sections[i]][j].mapp = [];					
 							j--;
 						}
 						else{
 							if(regenerateCountSec < 100){
-								console.log("regenerateCountSec",regenerateCountSec, regenerateCountSec)
+								//console.log("regenerateCountSec",regenerateCountSI, regenerateCountSec)
 								regenerateCountSI = 0; 
 								regenerateSec = true;
 								regenerateCountSec++;
@@ -228,7 +229,9 @@ const generate = async (instaces, givenSlots, teachers, sections) => {
 											teacherTT[secInstances[sections[i]][x].teacher][secInstances[sections[i]][x].mapp[y].day][secInstances[sections[i]][x].mapp[y].slot[w]] = 0;									
 										}
 									}
-								}								
+								}
+								for(x in secInstances[sections[i]])
+								secInstances[sections[i]][x].mapp = [];								
 								i--;
 							}
 							else{
@@ -238,8 +241,7 @@ const generate = async (instaces, givenSlots, teachers, sections) => {
 									console.log("notPossibleCount", notPossibleCount)
 									notPossible = true;
 									notPossibleCount++;									
-									i=0;
-									j= 0;
+									i=-1;
 									TT = [];
 	                        		teacherTT = {};
 	                        		secTT = {};
@@ -266,7 +268,7 @@ const generate = async (instaces, givenSlots, teachers, sections) => {
 											}	
 										}
 									}			     
-								console.log("not" , " ", i, " ", j)	
+								//console.log("not" , " ", i, " ", j)	
 								}
 								else{
 									impossible = true;
@@ -276,15 +278,19 @@ const generate = async (instaces, givenSlots, teachers, sections) => {
 					}
 				}				
 				if(impossible ||  notPossible || regenerateFlagSec || regenerateFlagSI){
-					console.log("break1" , i,j)
+					//console.log("break1" , i,j)
 					break;
 				}
 			}
 			if( impossible ||  notPossible || regenerateFlagSec){
-				console.log("break2",i,j)
+				//console.log("break2",i,j)
 				break;
 			}
-		}									
+		}	
+		/*								
+		if(currentTT[0] != undefined)
+			console.log("CURR",currentTT[0][0].sections , impossible, regenerateFlagSec, notPossible, i,j)
+		*/
 		if( (!impossible) && (!regenerateFlagSec) && (!notPossible)){
 			TT.push(currentTT);
 			secTT[sections[i]] = currentTT;
@@ -302,11 +308,11 @@ const generate = async (instaces, givenSlots, teachers, sections) => {
 	for(let u in TT){
 		for(let v in TT[u]){
 			for(let w in TT[u][v]){
-				console.log("tt",TT[u][v][w], TT[u][v][w].sections, TT[u][v][w].mapp, "u ", u,"v ",  v,"w ", w)
+				console.log("tt",TT[u][v][w], TT[u][v][w].sections, TT[u][v][w].mapp , "u ", u,"v ",  v,"w ", w)
 			}
 		}
 	}
-	console.log("TT",TT[1])
+	//console.log("TT",TT[1], notPossibleCount)
 	/*
 	console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT\n");
 	
@@ -322,7 +328,7 @@ generate([{
 	teacher: "T1",
 	sections: ["12A"],
 	subject: "English",
-	numLectures: "11",
+	numLectures: "12",
 	numLabs: null
 },{
 	teacher: "T2",
@@ -364,7 +370,7 @@ generate([{
 	teacher: "T2",
 	sections: ["12B"],
 	subject: "Science",
-	numLectures: "11",
+	numLectures: "12",
 	numLabs: null
 }], [8,8,8,8,8,5], ["T1", "T2", "T3", "T4", "T5", "T6"], ["12A", "12B"]); 
 
