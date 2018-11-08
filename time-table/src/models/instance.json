@@ -1,0 +1,9 @@
+
+// A general model for instance of class, lab, elective and elective lab. 
+{
+	"teacher": "",
+	"sections": [""],
+	"subject": "",
+	"numLectures": "",
+	"numLabs": "" 
+}
