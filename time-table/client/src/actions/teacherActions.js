@@ -44,7 +44,7 @@ export const deleteTeacher = tcr => dispatch => {
 };
 
 // Create Teacher
-export const createTeacher = (teacherData, history) => dispatch => {
+export const createTeacher = teacherData => dispatch => {
   axios
     .post("/api/teachersName", teacherData)
     .then(res =>

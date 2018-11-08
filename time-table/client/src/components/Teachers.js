@@ -1,16 +1,11 @@
 import React, { Component } from "react";
 import { Button, Label, Col, Row, Input, FormFeedback, Form } from "reactstrap";
 import Sidenav from "./SideNav";
-import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import Teacher from "./Teacher";
-import {
-  getCurrentTeacher,
-  createTeacher,
-  deleteTeacher
-} from "../actions/teacherActions";
+import { getCurrentTeacher, createTeacher } from "../actions/teacherActions";
 import Spinner from "./common/Spinner";
 
 class Teachers extends Component {
@@ -35,17 +30,13 @@ class Teachers extends Component {
     this.props.getCurrentTeacher();
   }
 
-  onDeleteClick(e) {
-    this.props.deleteTeacher();
-  }
-
   onSubmit(e) {
     e.preventDefault();
 
     const teacherData = {
       teachersName: this.state.teachersName
     };
-    this.props.createTeacher(teacherData, this.props.history);
+    this.props.createTeacher(teacherData);
     // this.forceUpdate();
     this.setState({
       teachersName: "",
@@ -65,7 +56,7 @@ class Teachers extends Component {
       teacherContent = <Spinner />;
     } else {
       // Check if logged in user has teacher data
-      if (Object.keys(teacher).length > 0) {
+      if (teacher.teachersName.length > 0) {
         teacherContent = (
           <div>
             <Teacher teachers={teacher.teachersName} />
@@ -78,9 +69,6 @@ class Teachers extends Component {
             <div>
               <p className="lead text-muted">Welcome {user.name}</p>
               <p>You do not have any Teacher's Name, please add some </p>
-              {/* <Link to="/create-profile" className="btn btn-lg btn-info">
-              Create Profile
-            </Link> */}
             </div>
           </div>
         );
@@ -142,7 +130,6 @@ class Teachers extends Component {
 Teachers.propTypes = {
   getCurrentTeacher: PropTypes.func.isRequired,
   createTeacher: PropTypes.func.isRequired,
-  deleteTeacher: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   teacher: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
@@ -156,5 +143,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getCurrentTeacher, createTeacher, deleteTeacher }
-)(withRouter(Teachers));
+  { getCurrentTeacher, createTeacher }
+)(Teachers);
