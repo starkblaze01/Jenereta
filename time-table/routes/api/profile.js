@@ -8,6 +8,12 @@ const validateProfileInput = require("../../validation/profile");
 const Profile = require("../../models/Profile");
 //Load User Model
 const User = require("../../models/Users");
+//Load Teacher Model
+const TeachersName = require("../../models/TeachersName");
+//Load Class Model
+const ClassAndsec = require("../../models/ClassAndsec");
+//Load Subject Model
+const Subject = require("../../models/Subject");
 
 // @route       GET api/profile/test
 // @desc        Tests profile route
@@ -85,9 +91,15 @@ router.delete(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOneAndRemove({ user: req.user.id }).then(() => {
-      User.findOneAndRemove(
-        { _id: req.user.id }.then(() => res.json({ success: true }))
-      );
+      TeachersName.findOneAndRemove({ user: req.user.id }).then(() => {
+        ClassAndsec.findOneAndRemove({ user: req.user.id }).then(() => {
+          Subject.findOneAndRemove({ user: req.user.id }).then(() => {
+            User.findOneAndRemove({ _id: req.user.id }).then(() =>
+              res.json({ success: true })
+            );
+          });
+        });
+      });
     });
   }
 );
