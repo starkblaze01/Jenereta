@@ -272,18 +272,20 @@ const generate = async (instaces, givenSlots, teachers, sections) => {
 								}
 								else{
 									impossible = true;
+									flag = false;
 								}
 							}								
 						}
 					}
 				}				
 				if(impossible ||  notPossible || regenerateFlagSec || regenerateFlagSI){
-					//console.log("break1" , i,j)
+					console.log("break1" , i,j)
 					break;
 				}
 			}
+				console.log("pos2", impossible, notPossibleCount)
 			if( impossible ||  notPossible || regenerateFlagSec){
-				//console.log("break2",i,j)
+				console.log("break2",i,j)
 				break;
 			}
 		}	
@@ -312,6 +314,7 @@ const generate = async (instaces, givenSlots, teachers, sections) => {
 			}
 		}
 	}
+
 	//console.log("TT",TT[1], notPossibleCount)
 	/*
 	console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT\n");
@@ -328,49 +331,49 @@ generate([{
 	teacher: "T1",
 	sections: ["12A"],
 	subject: "English",
-	numLectures: "12",
+	numLectures: "9",
 	numLabs: null
 },{
 	teacher: "T2",
 	sections: ["12A"],
 	subject: "Hindi",
-	numLectures: "11",
+	numLectures: "9",
+	numLabs: null
+},{
+	teacher: "T3",
+	sections: ["12A"],
+	subject: "Maths",
+	numLectures: "9",
 	numLabs: null
 },{
 	teacher: "T1",
 	sections: ["12A"],
-	subject: "Maths",
-	numLectures: "11",
-	numLabs: null
-},{
-	teacher: "T2",
-	sections: ["12A"],
 	subject: "Science",
-	numLectures: "11",
+	numLectures: "9",
 	numLabs: null
 },{
 	teacher: "T1",
 	sections: ["12B"],
 	subject: "English",
-	numLectures: "11",
+	numLectures: "9",
 	numLabs: null
 },{
 	teacher: "T2",
 	sections: ["12B"],
 	subject: "Hindi",
-	numLectures: "11",
+	numLectures: "9",
+	numLabs: null
+},{
+	teacher: "T3",
+	sections: ["12B"],
+	subject: "Maths",
+	numLectures: "9",
 	numLabs: null
 },{
 	teacher: "T1",
 	sections: ["12B"],
-	subject: "Maths",
-	numLectures: "11",
-	numLabs: null
-},{
-	teacher: "T2",
-	sections: ["12B"],
 	subject: "Science",
-	numLectures: "12",
+	numLectures: "9",
 	numLabs: null
 }], [8,8,8,8,8,5], ["T1", "T2", "T3", "T4", "T5", "T6"], ["12A", "12B"]); 
 
