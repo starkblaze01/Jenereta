@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
 import ProfileActions from "./ProfileActions";
+import isEmpty from "../../validation/is-empty";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -30,6 +31,30 @@ class Dashboard extends Component {
             <p className="lead text-muted">Welcome {user.name}</p>
             {/* <p className="lead text-muted">{email}</p> */}
             <ProfileActions />
+            <div style={{ marginTop: "60px" }} />
+            <div className="col-12">
+              <img
+                src={user.avatar}
+                alt="Profile Pic"
+                className="rounded-circle"
+              />
+            </div>
+            <p>
+              {isEmpty(profile.institute) ? null : <h4>Institute Name:</h4>}
+
+              {isEmpty(profile.institute) ? null : (
+                <span>{profile.institute}</span>
+              )}
+            </p>
+            <p>
+              {isEmpty(profile.institutewebsite) ? null : (
+                <h4>Institute Website:</h4>
+              )}
+
+              {isEmpty(profile.institutewebsite) ? null : (
+                <span>{profile.institutewebsite}</span>
+              )}
+            </p>
             <div style={{ marginBottom: "60px" }} />
             <button
               onClick={this.onDeleteClick.bind(this)}
