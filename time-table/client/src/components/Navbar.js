@@ -45,18 +45,15 @@ class Header extends Component {
     const { isAuthenticated, user } = this.props.auth;
 
     const authLinks = (
-      <Navbar right>
-        <span>
+
+      <Nav className="ml-auto" navbar>  
+        <NavItem>
           <NavLink className="nav-link right" to="/dashboard">
-            <span className="fa fa-address-book fa-lg">Profile</span>
+            <span className="fa fa-address-book fa-lg"></span> Profile
           </NavLink>
-        </span>
-        {/* <NavItem> */}
-        {/* <NavLink className="nav-link right" to="/SignIn"> */}
-        <span
-          onClick={this.onLogoutClick}
-          className="fa fa-sign-out nav-link right fa-lg"
-        >
+        </NavItem>
+  
+        <NavItem onClick={this.onLogoutClick} className="nav-link right">
           <img
             className="rounded-circle"
             src={user.avatar}
@@ -65,41 +62,36 @@ class Header extends Component {
             title="You must have gravatar connected to your email to display image"
           />
           Log Out
-        </span>
-        {/* </NavLink> */}
-        {/* </NavItem> */}
-      </Navbar>
+        </NavItem>
+      </Nav>
+
     );
 
     const guestLinks = (
-      <Navbar>
-        <Nav right="true">
+        <Nav className="ml-auto" navbar>
           <NavItem>
             <NavLink to={`/register`}>
               <Button
                 id="button1"
-                className="w3-button btn-info"
+                className="w3-button btn-info btn-lg"
                 type="submit"
-                color="secondary"
-              >
+                color="secondary">
                 Register
               </Button>
             </NavLink>
           </NavItem>
-          <NavItem>
+          <NavItem> 
             <NavLink to={`/SignIn`}>
               <Button
                 id="button2"
-                className="w3-button btn-info"
+                className="w3-button btn-info btn-lg"
                 type="submit"
-                color="secondary"
-              >
+                color="secondary">
                 Sign In
               </Button>
             </NavLink>
           </NavItem>
         </Nav>
-      </Navbar>
     );
 
     return (
@@ -123,36 +115,24 @@ class Header extends Component {
               />
             </NavbarBrand>
             <Collapse isOpen={this.state.isNavOpen} navbar>
-              <Nav navbar left="true">
+              <Nav navbar>
                 <NavItem>
-                  <NavLink
-                    className="nav-link"
-                    data-analytics="NavBarDomains"
-                    to="/home"
-                  >
-                    <span className="fa fa-lg"> Home</span>
+                  <NavLink className="nav-link" to="/home" >
+                    <span className="fa fa-home fa-lg"> Home</span>
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink
-                    className="nav-link"
-                    data-analytics="NavBarDomains"
-                    to="/aboutus"
-                  >
-                    <span className="fa fa-lg"> About Us</span>
+                  <NavLink className="nav-link" to="/aboutus">
+                     <span className="fa fa-info fa-lg"></span> About Us
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink
-                    className="nav-link"
-                    data-analytics="NavBarDomains"
-                    to="/faq"
-                  >
-                    <span className="fa fa-lg"> Faq</span>
+                  <NavLink className="nav-link " to="/faq">
+                    <span className="fa fa-book fa-lg"> Faq</span>
                   </NavLink>
                 </NavItem>
               </Nav>
-              {isAuthenticated ? authLinks : guestLinks}
+              {isAuthenticated ? authLinks : guestLinks}             
             </Collapse>
           </div>
         </Navbar>
