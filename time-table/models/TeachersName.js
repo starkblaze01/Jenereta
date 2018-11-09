@@ -13,7 +13,7 @@ const TeachersNameSchema = new Schema({
   }
 });
 
-module.exports = teachersName = mongoose.model(
+module.exports = TeachersName = mongoose.model(
   "teachersName",
   TeachersNameSchema
 );

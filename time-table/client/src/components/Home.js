@@ -26,8 +26,8 @@ class Home extends Component {
                     The process of creating time-table is quite tedious and
                     requires lots of human efforts. Time Table Generator aims to
                     reduce the time and efforts of manually creating the
-                    timetable. It provides the most feasible solution by
-                    creating a timetable with minimum number of clashes.
+                    timetable. It provides the feasible solution by creating a
+                    timetable with minimum number of clashes.
                   </p>
                 </div>
               </div>

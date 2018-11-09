@@ -43,6 +43,24 @@ export const deleteSubject = sbj => dispatch => {
     );
 };
 
+// Delete Lab
+export const deleteLab = id => dispatch => {
+  axios
+    .delete(`/api/subject/labs/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_SUBJECT,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 // Create Subject
 export const createSubject = subjectData => dispatch => {
   axios
@@ -61,7 +79,25 @@ export const createSubject = subjectData => dispatch => {
     );
 };
 
-// Teacher Loading
+// Create Subject
+export const createLab = labData => dispatch => {
+  axios
+    .post("/api/subject/labs", labData)
+    .then(res =>
+      dispatch({
+        type: GET_SUBJECT,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Subject Loading
 export const setSubjectLoading = () => {
   return {
     type: SUBJECT_LOADING

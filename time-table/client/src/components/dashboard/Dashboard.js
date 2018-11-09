@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -58,8 +59,12 @@ class Dashboard extends Component {
                 <span>{profile.institutewebsite}</span>
               )}
             </div>
-            <div style={{ marginBottom: "60px" }} />
+            <div style={{ marginTop: "25px" }}>
+              <Button className="btn">View Time-Table</Button>
+            </div>
+            <div style={{ marginBottom: "40px" }} />
             <button
+              style={{ marginBottom: "20px" }}
               onClick={this.onDeleteClick.bind(this)}
               className="btn btn-danger"
             >

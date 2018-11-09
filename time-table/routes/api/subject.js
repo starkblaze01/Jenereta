@@ -64,6 +64,7 @@ router.post(
         // subjectname = subjectname.trim();
         //});
       }
+      // console.log(subjectFields);
     }
 
     Subject.findOne({ user: req.user.id }).then(subject => {
@@ -77,7 +78,7 @@ router.post(
           } else {
             Subject.findOneAndUpdate(
               { user: req.user.id },
-              { $push: { subject: subject.subject } },
+              { $push: { subject: subjects } },
               { new: true }
             )
               .then(subject => res.json(subject))
@@ -86,9 +87,9 @@ router.post(
         });
       } else {
         //Create
-        //Save Profile
+        //Save Subject
         Subject.findOne({ user: req.user.id }).then(subject => {
-          new Subject(subjectFields).save.then(subject => res.json(subject));
+          new Subject(subjectFields).save().then(subject => res.json(subject));
         });
       }
     });
@@ -115,10 +116,9 @@ router.post(
         labname: req.body.labname,
         numberoflabs: req.body.numberoflabs
       };
-
       // Add to lab array
       subject.lab.unshift(newlab);
-
+      // console.log(subject.lab);
       subject.save().then(subject => res.json(subject));
     });
   }
@@ -149,6 +149,30 @@ router.delete(
 
         //Splice out of array
         subject.subject.splice(removeIndex, 1);
+
+        //Save
+        subject.save().then(subject => res.json(subject));
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
+// @route       DELETE api/Subject/labs/:lab_id
+// @desc        Delete Subject
+// @access      Private
+router.delete(
+  "/labs/:lab_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Subject.findOneAndUpdate({ user: req.user.id })
+      .then(subject => {
+        //GET remove index
+        const removeIndex = subject.lab
+          .map(item => item.id)
+          .indexOf(req.params.lab_id);
+
+        //Splice out of array
+        subject.lab.splice(removeIndex, 1);
 
         //Save
         subject.save().then(subject => res.json(subject));

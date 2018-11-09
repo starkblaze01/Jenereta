@@ -247,6 +247,9 @@ class SlotDetail extends Component {
                 handleInputChange={this.handleInputChange}
               /> */}
             </div>
+            <div style={{ float: "right" }}>
+              <Button className="btn">Generate Time-Table</Button>
+            </div>
           </Col>
         </Row>
       </div>
