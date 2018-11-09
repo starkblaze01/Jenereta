@@ -10,7 +10,13 @@ const SubjectSchema = new Schema({
   subject: {
     type: [String],
     required: true
-  }
+  },
+  lab: [
+    {
+      labname: { type: String, required: true },
+      numberoflabs: { type: Number, required: true }
+    }
+  ]
 });
 
 module.exports = Subject = mongoose.model("subject", SubjectSchema);

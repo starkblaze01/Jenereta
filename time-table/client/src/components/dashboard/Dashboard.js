@@ -28,7 +28,10 @@ class Dashboard extends Component {
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div>
-            <p className="lead text-muted">Welcome {user.name}</p>
+            <div className="lead text-muted">
+              Welcome {user.name}
+              <div>{profile.user.email}</div>
+            </div>
             {/* <p className="lead text-muted">{email}</p> */}
             <ProfileActions />
             <div style={{ marginTop: "60px" }} />
@@ -39,14 +42,14 @@ class Dashboard extends Component {
                 className="rounded-circle"
               />
             </div>
-            <p>
+            <div>
               {isEmpty(profile.institute) ? null : <h4>Institute Name:</h4>}
 
               {isEmpty(profile.institute) ? null : (
                 <span>{profile.institute}</span>
               )}
-            </p>
-            <p>
+            </div>
+            <div>
               {isEmpty(profile.institutewebsite) ? null : (
                 <h4>Institute Website:</h4>
               )}
@@ -54,7 +57,7 @@ class Dashboard extends Component {
               {isEmpty(profile.institutewebsite) ? null : (
                 <span>{profile.institutewebsite}</span>
               )}
-            </p>
+            </div>
             <div style={{ marginBottom: "60px" }} />
             <button
               onClick={this.onDeleteClick.bind(this)}

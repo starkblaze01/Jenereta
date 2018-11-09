@@ -29,6 +29,7 @@ router.get(
   (req, res) => {
     const errors = {};
     Profile.findOne({ user: req.user.id })
+      .populate("user", ["name", "avatar", "email"])
       .then(profile => {
         // console.log(profile);
         if (!profile) {
