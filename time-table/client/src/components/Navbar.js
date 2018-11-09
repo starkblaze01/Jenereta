@@ -112,7 +112,7 @@ class Header extends Component {
             <NavbarBrand className="mr-auto" href="/">
               <img
                 id="jenereta"
-                src="assets/ttlogo5.png"
+                src="assets/ttlogo5.PNG"
                 height="40"
                 width="40"
                 alt="TimeTable Generator"

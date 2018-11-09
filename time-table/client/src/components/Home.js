@@ -35,7 +35,7 @@ class Home extends Component {
                 <img
                   id="ttlogo"
                   alt="time-table"
-                  src="assets/ttlogo5.png"
+                  src="assets/ttlogo5.PNG"
                   width="65%"
                   height="65%"
                 />
