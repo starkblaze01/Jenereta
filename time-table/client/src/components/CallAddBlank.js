@@ -13,12 +13,13 @@ class CallAddBlank extends Component {
           </Col>
           <Col sm="9">
             <div className="container opacityblank page">
-              <img id="ttlogo2"
-                src="./assets/ttlogo5.png"
+              <img
+                id="ttlogo2"
+                src="./assets/ttlogo5.PNG"
                 align="middle"
                 className="img-fluid imagespace"
-                width= "70%"
-                height= "70%"
+                width="70%"
+                height="70%"
               />
             </div>
           </Col>
