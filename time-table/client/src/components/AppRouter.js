@@ -16,6 +16,7 @@ import CreateProfile from "./create-profile/CreateProfile";
 import PrivateRoute from "./common/PrivateRoute";
 import { Switch, Route, Redirect } from "react-router-dom";
 import EditProfile from "./edit-profile/EditProfile";
+import HandBook from "./HandBook";
 
 class AppRouter extends Component {
   render() {
@@ -27,6 +28,7 @@ class AppRouter extends Component {
           <Route path="/register" component={Register} />
           <Route path="/aboutus" component={About} />
           <Route path="/SignIn" component={SignIn} />
+          <Route exact path="/handbook" component={HandBook} />
           <PrivateRoute
             exact
             path="/create-profile"

@@ -245,3 +245,14 @@ footer {
 .form-control {
     margin-bottom: 0.5rem;
 }
+
+.addscroll{
+    position: relative;
+    overflow-y: scroll;
+    height: 90%;
+  }
+
+  .displayhandbook{
+      margin-top: 100px;
+      text-align: left;
+  }

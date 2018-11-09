@@ -1,70 +1,9 @@
 import React, { Component } from "react";
-import { Button, Label, Col, Row, Input } from "reactstrap";
+import { Label, Col, Row } from "reactstrap";
 import Sidenav from "../SideNav";
-
-function RenderComponent({ selectedOption }) {
-  if (selectedOption === "option1") {
-    return (
-      <div className="mt-5">
-        <Row>
-          <Col md={{ size: 3, offset: 1 }}>
-            <Label>Subject Name</Label>
-          </Col>
-          <Col md={7}>
-            <Input
-              type="text"
-              id="subjectname"
-              name="subjectname"
-              placeholder="Subject Name"
-            />
-          </Col>
-          <Col md={{ size: 1, offset: 0.5 }}>
-            <Button type="submit" color="primary">
-              Add
-            </Button>
-          </Col>
-        </Row>
-      </div>
-    );
-  } else {
-    return (
-      <div className="mt-5">
-        <Row>
-          <Col md={{ size: 3, offset: 1 }}>
-            <Label className="labelname">Subject Name</Label>
-          </Col>
-          <Col md={7}>
-            <Input
-              type="text"
-              id="subjectname"
-              name="subjectname"
-              placeholder="Subject Name"
-            />
-          </Col>
-        </Row>
-
-        <Row className="mt-8">
-          <Col md={{ size: 3, offset: 1 }}>
-            <Label className="labelname">Number of Available Labs</Label>
-          </Col>
-          <Col md={7}>
-            <Input
-              type="number"
-              id="number"
-              name="number"
-              placeholder="No. of labs for this subject"
-            />
-          </Col>
-          <Col md={{ size: 1, offset: 0.5 }}>
-            <Button type="submit" color="primary">
-              Add
-            </Button>
-          </Col>
-        </Row>
-      </div>
-    );
-  }
-}
+import { connect } from "react-redux";
+import Subjects from "./Subjects";
+import Labs from "./Labs";
 
 class Subject extends Component {
   constructor(props) {
@@ -74,7 +13,13 @@ class Subject extends Component {
       selectedOption: "option1"
     };
 
+    this.onChange = this.onChange.bind(this);
+
     this.handleOptionChange = this.handleOptionChange.bind(this);
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   handleOptionChange(event) {
@@ -84,6 +29,14 @@ class Subject extends Component {
   }
 
   render() {
+    function RenderComponent({ selectedOption }) {
+      if (selectedOption === "option1") {
+        return <Subjects />;
+      } else {
+        return <Labs />;
+      }
+    }
+
     return (
       <div className="page">
         <Row className="occupy">
@@ -125,4 +78,4 @@ class Subject extends Component {
   }
 }
 
-export default Subject;
+export default connect(null)(Subject);

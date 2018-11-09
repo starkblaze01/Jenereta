@@ -24,7 +24,7 @@ class Teacher extends Component {
     ));
 
     return (
-      <div>
+      <div className="addscroll">
         <table>
           <thead>
             <tr>
