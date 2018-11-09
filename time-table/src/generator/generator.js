@@ -1,3 +1,4 @@
+
 // Function to generate the best possible timetable.
 
 const crypto = require("crypto");
@@ -272,21 +273,23 @@ const generate = async (instaces, givenSlots, teachers, sections) => {
 								}
 								else{
 									impossible = true;
+									flag = false;
 								}
 							}								
 						}
 					}
-				}				
+				} // flag 				
 				if(impossible ||  notPossible || regenerateFlagSec || regenerateFlagSI){
-					//console.log("break1" , i,j)
+					console.log("break1" , i,j)
 					break;
 				}
-			}
+			} // numdays
+				console.log("pos2", impossible, notPossibleCount)
 			if( impossible ||  notPossible || regenerateFlagSec){
-				//console.log("break2",i,j)
+				console.log("break2",i,j)
 				break;
 			}
-		}	
+		}	// j
 		/*								
 		if(currentTT[0] != undefined)
 			console.log("CURR",currentTT[0][0].sections , impossible, regenerateFlagSec, notPossible, i,j)
@@ -299,11 +302,20 @@ const generate = async (instaces, givenSlots, teachers, sections) => {
 			notPossible = false;
 		}
 		if(impossible){
-			console.log("impossible")
+
+			console.log("Could not generate in this case, please refresh/restart.\n");
+			
+			for(let u in TT){
+				for(let v in TT[u]){
+					for(let w in TT[u][v]){
+						console.log("ptt",TT[u][v][w], TT[u][v][w].sections, TT[u][v][w].mapp , "u ", u,"v ",  v,"w ", w)
+					}
+				}
+			}	
 			break;
 		}
 		console.log("iii")
-	}
+	} // i
 	
 	for(let u in TT){
 		for(let v in TT[u]){
@@ -312,6 +324,9 @@ const generate = async (instaces, givenSlots, teachers, sections) => {
 			}
 		}
 	}
+
+
+
 	//console.log("TT",TT[1], notPossibleCount)
 	/*
 	console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT\n");
@@ -337,13 +352,13 @@ generate([{
 	numLectures: "11",
 	numLabs: null
 },{
-	teacher: "T1",
+	teacher: "T3",
 	sections: ["12A"],
 	subject: "Maths",
 	numLectures: "11",
 	numLabs: null
 },{
-	teacher: "T2",
+	teacher: "T1",
 	sections: ["12A"],
 	subject: "Science",
 	numLectures: "11",
@@ -361,16 +376,16 @@ generate([{
 	numLectures: "11",
 	numLabs: null
 },{
-	teacher: "T1",
+	teacher: "T3",
 	sections: ["12B"],
 	subject: "Maths",
-	numLectures: "11",
+	numLectures: "12",
 	numLabs: null
 },{
-	teacher: "T2",
+	teacher: "T1",
 	sections: ["12B"],
 	subject: "Science",
-	numLectures: "12",
+	numLectures: "11",
 	numLabs: null
 }], [8,8,8,8,8,5], ["T1", "T2", "T3", "T4", "T5", "T6"], ["12A", "12B"]); 
 
