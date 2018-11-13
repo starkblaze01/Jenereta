@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Col, Input, Row } from "reactstrap";
+import { Button, Label, Col, Input, Row } from "reactstrap";
 import PropTypes from "prop-types";
 import { getCurrentSubject } from "../../actions/subjectActions";
 import { getCurrentTeacher } from "../../actions/teacherActions";
@@ -70,21 +70,25 @@ class Slots extends Component {
       <div className="mt-5">
         <Row>
           <Col md={{ size: 3, offset: 0.5 }}>
+            <Label>Teacher</Label>
             <Input type="select" name="classSection">
               {tchr}
             </Input>
           </Col>
           <Col md={{ size: 3, offset: 0.5 }}>
+            <Label>Class-Section</Label>
             <Input type="select" name="teacher">
               {section}
             </Input>
           </Col>
           <Col md={{ size: 3, offset: 0.5 }}>
+            <Label>Subject</Label>
             <Input type="select" name="subject">
               {subjects}
             </Input>
           </Col>
           <Col md={{ size: 2, offset: 0.5 }}>
+            <Label>No. Of Lectures</Label>
             <Input
               type="number"
               name="lectures"
@@ -92,6 +96,7 @@ class Slots extends Component {
             />
           </Col>
           <Col md={{ size: 1, offset: 0.5 }}>
+            <Label>Add</Label>
             <Button type="submit" color="primary">
               Add
             </Button>
