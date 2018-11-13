@@ -11,7 +11,7 @@ import Subject from "./Subject/Subject";
 import Teachers from "./Teacher/Teachers";
 import ClassSection from "./ClassAndSec/ClassSection";
 import Dashboard from "./dashboard/Dashboard";
-import SlotDetail from "./SlotDetails";
+import SlotDetails from "./Slot/SlotDetails";
 import CreateProfile from "./create-profile/CreateProfile";
 import PrivateRoute from "./common/PrivateRoute";
 import { Switch, Route, Redirect } from "react-router-dom";
@@ -38,7 +38,7 @@ class AppRouter extends Component {
           <PrivateRoute exact path="/subject" component={Subject} />
           <PrivateRoute exact path="/teacher" component={Teachers} />
           <PrivateRoute exact path="/classSection" component={ClassSection} />
-          <PrivateRoute exact path="/slotdetails" component={SlotDetail} />
+          <PrivateRoute exact path="/slotdetails" component={SlotDetails} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute exact path="/edit-profile" component={EditProfile} />
           <Redirect to="/home" />

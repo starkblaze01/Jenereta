@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Label, Col, Row } from "reactstrap";
 import Sidenav from "../SideNav";
-import { connect } from "react-redux";
 import Subjects from "./Subjects";
 import Labs from "./Labs";
 
@@ -12,14 +11,7 @@ class Subject extends Component {
     this.state = {
       selectedOption: "option1"
     };
-
-    this.onChange = this.onChange.bind(this);
-
     this.handleOptionChange = this.handleOptionChange.bind(this);
-  }
-
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
   }
 
   handleOptionChange(event) {
@@ -78,4 +70,4 @@ class Subject extends Component {
   }
 }
 
-export default connect(null)(Subject);
+export default Subject;
