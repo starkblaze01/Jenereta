@@ -85,7 +85,7 @@ const generate = async (instaces, givenSlots, teachers, sections) => {
 	for(i=0; i < (sections.length ) ;i++){ 
 
 		if(impossible){
-			consle.log("Table Not Possible");
+			console.log("Table Not Possible");
 			break;
 		}
 		let notPossible = false;

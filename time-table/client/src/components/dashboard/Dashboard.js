@@ -76,11 +76,22 @@ class Dashboard extends Component {
         //User is logged in but has no profile
         dashboardContent = (
           <div>
-            <p className="lead text-muted">Welcome {user.name}</p>
+            <div className="lead text-muted">
+              Welcome {user.name}
+              <div>{user.email}</div>
+            </div>
             <p>You have not yet setup a profile, please add some info</p>
             <Link to="/create-profile" className="btn btn-lg btn-info">
               Create Profile
             </Link>
+            <div style={{ marginBottom: "40px" }} />
+            <button
+              style={{ marginBottom: "20px" }}
+              onClick={this.onDeleteClick.bind(this)}
+              className="btn btn-danger"
+            >
+              Delete My Account
+            </button>
           </div>
         );
       }
