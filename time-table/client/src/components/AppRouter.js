@@ -17,6 +17,7 @@ import PrivateRoute from "./common/PrivateRoute";
 import { Switch, Route, Redirect } from "react-router-dom";
 import EditProfile from "./edit-profile/EditProfile";
 import HandBook from "./HandBook";
+import DisplayTimetable from "./DisplayTimetable";
 
 class AppRouter extends Component {
   render() {
@@ -35,6 +36,11 @@ class AppRouter extends Component {
             component={CreateProfile}
           />
           <PrivateRoute exact path="/calladdblank" component={CallAddBlank} />
+          <PrivateRoute
+            exact
+            path="/display-time-table"
+            component={DisplayTimetable}
+          />
           <PrivateRoute exact path="/subject" component={Subject} />
           <PrivateRoute exact path="/teacher" component={Teachers} />
           <PrivateRoute exact path="/classSection" component={ClassSection} />

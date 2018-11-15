@@ -79,7 +79,7 @@ export const createSubject = subjectData => dispatch => {
     );
 };
 
-// Create Subject
+// Create Lab
 export const createLab = labData => dispatch => {
   axios
     .post("/api/subject/labs", labData)

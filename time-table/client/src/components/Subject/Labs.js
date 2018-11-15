@@ -60,7 +60,14 @@ class Labs extends Component {
     if (subject === null || loading) {
       labContent = <Spinner />;
     } else {
-      if (Object.keys(subject.lab).length > 0) {
+      let a = false;
+      // Check if logged in user has subject data
+      if (subject.lab !== undefined) {
+        if (subject.lab.length > 0) {
+          a = true;
+        }
+      }
+      if (Object.keys(subject).length > 0 && a) {
         labContent = (
           <div>
             <EachLab labs={subject.lab} />

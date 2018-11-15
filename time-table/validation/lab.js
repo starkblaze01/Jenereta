@@ -15,8 +15,8 @@ module.exports = function validateLabInput(data) {
     errors.numberoflabs = "This field is required";
   }
 
-  if (!Validator.isNumeric(data.numberoflabs)) {
-    errors.numberoflabs = "Please enter a valid number";
+  if (!Validator.isNumeric(data.numberoflabs) || data.numberoflabs <= 0) {
+    errors.numberoflabs = "Please enter a valid positive number";
   }
 
   return {
