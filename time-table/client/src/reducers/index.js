@@ -5,6 +5,7 @@ import profileReducer from "./profileReducer";
 import teacherReducer from "./teacherReducer";
 import subjectReducer from "./subjectReducer";
 import classReducer from "./classReducer";
+import slotReducer from "./slotReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   profile: profileReducer,
   teacher: teacherReducer,
   subject: subjectReducer,
-  classes: classReducer
+  classes: classReducer,
+  slot: slotReducer
 });

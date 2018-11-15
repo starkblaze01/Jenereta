@@ -9,6 +9,7 @@ const profile = require("./routes/api/profile");
 const subject = require("./routes/api/subject");
 const teachersName = require("./routes/api/teachersName");
 const classAndsec = require("./routes/api/classAndsec");
+const slots = require("./routes/api/slots");
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.use("/api/profile", profile);
 app.use("/api/subject", subject);
 app.use("/api/teachersName", teachersName);
 app.use("/api/classAndsec", classAndsec);
+app.use("/api/slots", slots);
 
 // Server static assets if in production
 if (process.env.NODE_ENV === "production") {

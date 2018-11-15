@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "reactstrap";
+//import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -60,7 +60,13 @@ class Dashboard extends Component {
               )}
             </div>
             <div style={{ marginTop: "25px" }}>
-              <Button className="btn">View Time-Table</Button>
+              <Link
+                to="/display-time-table"
+                type="button"
+                className="btn btn-info"
+              >
+                View Time-Table
+              </Link>
             </div>
             <div style={{ marginBottom: "40px" }} />
             <button

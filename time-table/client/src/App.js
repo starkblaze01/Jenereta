@@ -11,6 +11,7 @@ import { clearCurrentProfile } from "./actions/profileActions";
 import { clearCurrentTeacher } from "./actions/teacherActions";
 import { clearCurrentSubject } from "./actions/subjectActions";
 import { clearCurrentClass } from "./actions/classActions";
+import { clearCurrentSlot } from "./actions/slotActions";
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -32,6 +33,8 @@ if (localStorage.jwtToken) {
     store.dispatch(clearCurrentSubject());
     // Clear current class
     store.dispatch(clearCurrentClass());
+    // Clear current slot
+    store.dispatch(clearCurrentSlot());
     // Redirect to login
     window.location.href = "/SignIn";
   }

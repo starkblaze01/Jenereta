@@ -14,6 +14,8 @@ const TeachersName = require("../../models/TeachersName");
 const ClassAndsec = require("../../models/ClassAndsec");
 //Load Subject Model
 const Subject = require("../../models/Subject");
+//Load Slot Model
+const Slots = require("../../models/Slots");
 
 // @route       GET api/profile/test
 // @desc        Tests profile route
@@ -95,9 +97,11 @@ router.delete(
       TeachersName.findOneAndRemove({ user: req.user.id }).then(() => {
         ClassAndsec.findOneAndRemove({ user: req.user.id }).then(() => {
           Subject.findOneAndRemove({ user: req.user.id }).then(() => {
-            User.findOneAndRemove({ _id: req.user.id }).then(() =>
-              res.json({ success: true })
-            );
+            Slots.findOneAndRemove({ user: req.user.id }).then(() => {
+              User.findOneAndRemove({ _id: req.user.id }).then(() =>
+                res.json({ success: true })
+              );
+            });
           });
         });
       });
