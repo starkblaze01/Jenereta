@@ -11,6 +11,10 @@ module.exports = function validateLabInput(data) {
     errors.labname = "This field is required";
   }
 
+  if (!Validator.isAlphanumeric(data.labname)) {
+    errors.labname = "Name Should be Alphanumeric!";
+  }
+
   if (Validator.isEmpty(data.numberoflabs)) {
     errors.numberoflabs = "This field is required";
   }
