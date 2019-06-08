@@ -31,3 +31,9 @@ module.exports = {
 - npm run dev
 
 ## Team Members
+- [Aman Yadav](https://github.com/amany9000)
+- [Daksh Gondaliya](https://github.com/DakshGondaliya)
+- [Kirtika Singhal](https://github.com/singhalkirtika)
+- [Nikhil Sachan](https://github.com/nikhilsachan007)
+- [Parmeshwar](https://github.com/parmeshwar01)
+- ,and [Me](https://github.com/starkblaze01/) 😎
