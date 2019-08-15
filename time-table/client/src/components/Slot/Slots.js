@@ -77,7 +77,7 @@ class Slots extends Component {
   generator(e) {
     e.preventDefault();
     //    this.props.history.push("/display-time-table");
-    generate(
+    const result = generate(
       [
         {
           teacher: "T1",
