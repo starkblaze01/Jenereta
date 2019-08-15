@@ -1,4 +1,10 @@
 {
     "eslint.autoFixOnSave": true,
     "editor.formatOnSave": false,
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
 }

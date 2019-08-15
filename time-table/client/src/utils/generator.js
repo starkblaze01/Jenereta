@@ -406,7 +406,8 @@ export const generate = async (instaces, givenSlots, teachers, sections) => {
 				console.log(teacherTT["T1"][i][j], teacherTT["T1"][i][j].sections, teacherTT["T1"][i][j].mapp, j, k)
 		}
 	}		
-	*/
+  */
+  return TT;
 };
 
 // generate(
