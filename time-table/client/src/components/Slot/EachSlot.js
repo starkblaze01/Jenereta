@@ -31,7 +31,7 @@ class EachSlot extends Component {
 
     return (
       <div className="addscroll">
-        {console.log(this.props.slots)}
+        {/* {console.log(this.props.slots)} */}
         <table>
           <thead>
             <tr>

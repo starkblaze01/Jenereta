@@ -379,23 +379,24 @@ export const generate = async (instaces, givenSlots, teachers, sections) => {
     //  console.log("iii");
   } // i
 
-  for (let u in TT) {
-    for (let v in TT[u]) {
-      for (let w in TT[u][v]) {
-        console.log(
-          "tt",
-          TT[u][v][w],
-          TT[u][v][w].sections,
-          "section ",
-          u,
-          "day ",
-          v,
-          "slot ",
-          w
-        );
-      }
-    }
-  }
+  // for (let u in TT) {
+  //   for (let v in TT[u]) {
+  //     for (let w in TT[u][v]) {
+  //       console.log(
+  //         "tt",
+  //         TT[u][v][w],
+  //         TT[u][v][w].sections,
+  //         "section ",
+  //         u,
+  //         "day ",
+  //         v,
+  //         "slot ",
+  //         w
+  //       );
+  //     }
+  //   }
+  // }
+  console.log(TT);
 
   //console.log("TT",TT[1], notPossibleCount)
   /*
