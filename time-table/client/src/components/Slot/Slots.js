@@ -78,12 +78,19 @@ class Slots extends Component {
     // e.preventDefault();
       //  this.props.history.push("/display-time-table");
     let slots = [];
+    let numPeriods = 0;
+    slot ? numPeriods = slot.monday+slot.tuesday+slot.wednesday+ slot.thursday+ slot.friday+slot.saturday : numPeriods = 0;
+    let numLecture = 0;
     slot.slots.map(el => 
       {
       const tempSlot = { numLabs: null, numLectures: el.numLectures, subject: el.subject, sections: [el.sections], teacher: el.teacher}
-        slots.push(tempSlot)
+      slots.push(tempSlot);
+      numLecture = numLecture + el.numLectures;
       }
     );
+    if(numPeriods<numLecture){
+      return console.log("Number of Periods should be more than or equal to the total number of Lectures")
+    }    
     console.log(slot, classes)
     const result = generate(
       // [
@@ -145,9 +152,10 @@ class Slots extends Component {
       //   }
       // ],
       slots,
+      // [8,8,8,8,8,5],
       [slot.monday, slot.tuesday, slot.wednesday, slot.thursday, slot.friday, slot.saturday],
       teacher.teachersName,
-      ["5A", "12A"]
+      classes.classAndsec
     );
   }
 
