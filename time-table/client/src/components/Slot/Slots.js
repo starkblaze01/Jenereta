@@ -74,71 +74,88 @@ class Slots extends Component {
     this.props.getCurrentSlot();
   }
 
-  generator(e) {
-    e.preventDefault();
-    //    this.props.history.push("/display-time-table");
+  generator(slot,teacher, classes) {
+    // e.preventDefault();
+      //  this.props.history.push("/display-time-table");
+    let slots = [];
+    let numPeriods = 0;
+    slot ? numPeriods = slot.monday+slot.tuesday+slot.wednesday+ slot.thursday+ slot.friday+slot.saturday : numPeriods = 0;
+    let numLecture = 0;
+    slot.slots.map(el => 
+      {
+      const tempSlot = { numLabs: null, numLectures: el.numLectures, subject: el.subject, sections: [el.sections], teacher: el.teacher}
+      slots.push(tempSlot);
+      numLecture = numLecture + el.numLectures;
+      }
+    );
+    if(numPeriods<numLecture){
+      return console.log("Number of Periods should be more than or equal to the total number of Lectures")
+    }    
+    console.log(slot, classes)
     const result = generate(
-      [
-        {
-          teacher: "T1",
-          sections: ["12A"],
-          subject: "English",
-          numLectures: "10",
-          numLabs: null
-        },
-        {
-          teacher: "T2",
-          sections: ["12A"],
-          subject: "Hindi",
-          numLectures: "10",
-          numLabs: null
-        },
-        {
-          teacher: "T3",
-          sections: ["12A"],
-          subject: "Maths",
-          numLectures: "10",
-          numLabs: null
-        },
-        {
-          teacher: "T4",
-          sections: ["12A"],
-          subject: "Science",
-          numLectures: "10",
-          numLabs: null
-        },
-        {
-          teacher: "T1",
-          sections: ["12B"],
-          subject: "English",
-          numLectures: "10",
-          numLabs: null
-        },
-        {
-          teacher: "T2",
-          sections: ["12B"],
-          subject: "Hindi",
-          numLectures: "10",
-          numLabs: null
-        },
-        {
-          teacher: "T3",
-          sections: ["12B"],
-          subject: "Maths",
-          numLectures: "10",
-          numLabs: null
-        },
-        {
-          teacher: "T4",
-          sections: ["12B"],
-          subject: "Science",
-          numLectures: "10",
-          numLabs: null
-        }
-      ],
-      [8, 8, 8, 8, 8, 5],
-      ["T1", "T2", "T3", "T4", "T5", "T6"],
-      ["12A", "12B"]
+      // [
+      //   {
+      //     teacher: "T1",
+      //     sections: ["12A"],
+      //     subject: "English",
+      //     numLectures: "10",
+      //     numLabs: null
+      //   },
+      //   {
+      //     teacher: "T2",
+      //     sections: ["12A"],
+      //     subject: "Hindi",
+      //     numLectures: "10",
+      //     numLabs: null
+      //   },
+      //   {
+      //     teacher: "T3",
+      //     sections: ["12A"],
+      //     subject: "Maths",
+      //     numLectures: "10",
+      //     numLabs: null
+      //   },
+      //   {
+      //     teacher: "T4",
+      //     sections: ["12A"],
+      //     subject: "Science",
+      //     numLectures: "10",
+      //     numLabs: null
+      //   },
+      //   {
+      //     teacher: "T1",
+      //     sections: ["12B"],
+      //     subject: "English",
+      //     numLectures: "10",
+      //     numLabs: null
+      //   },
+      //   {
+      //     teacher: "T2",
+      //     sections: ["12B"],
+      //     subject: "Hindi",
+      //     numLectures: "10",
+      //     numLabs: null
+      //   },
+      //   {
+      //     teacher: "T3",
+      //     sections: ["12B"],
+      //     subject: "Maths",
+      //     numLectures: "10",
+      //     numLabs: null
+      //   },
+      //   {
+      //     teacher: "T4",
+      //     sections: ["12B"],
+      //     subject: "Science",
+      //     numLectures: "10",
+      //     numLabs: null
+      //   }
+      // ],
+      slots,
+      // [8,8,8,8,8,5],
+      [slot.monday, slot.tuesday, slot.wednesday, slot.thursday, slot.friday, slot.saturday],
+      teacher.teachersName,
+      classes.classAndsec
     );
   }
 
@@ -289,7 +306,7 @@ class Slots extends Component {
         <div
           style={{ float: "right", marginLeft: "20px", marginBottom: "10px" }}
         >
-          <Button onClick={this.generator} className="btn">
+          <Button onClick={() => this.generator(slot, teacher, classes)} className="btn">
             Generate Time-Table
           </Button>
         </div>
