@@ -6,6 +6,7 @@ import teacherReducer from "./teacherReducer";
 import subjectReducer from "./subjectReducer";
 import classReducer from "./classReducer";
 import slotReducer from "./slotReducer";
+import timeTableReducer from './timeTableReducer';
 
 export default combineReducers({
   auth: authReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   teacher: teacherReducer,
   subject: subjectReducer,
   classes: classReducer,
-  slot: slotReducer
+  slot: slotReducer,
+  timeTable: timeTableReducer,
 });

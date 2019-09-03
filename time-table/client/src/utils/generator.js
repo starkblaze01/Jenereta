@@ -55,7 +55,7 @@ export const generate = async (instaces, givenSlots, teachers, sections) => {
   for (i in sections) {
     let mapp = givenSlots.map(x => {
       let z = [];
-      for (j = 0; j < x; j++) {
+      for (let j = 0; j < x; j++) {
         z.push(0);
       }
       return z;
@@ -69,7 +69,7 @@ export const generate = async (instaces, givenSlots, teachers, sections) => {
   for (i in teachers) {
     let mapp = givenSlots.map(x => {
       let z = [];
-      for (j = 0; j < x; j++) {
+      for (let j = 0; j < x; j++) {
         z.push(0);
       }
       return z;
@@ -104,7 +104,7 @@ export const generate = async (instaces, givenSlots, teachers, sections) => {
     let notPossible = false;
     let currentTT = givenSlots.map(x => {
       let z = [];
-      for (j = 0; j < x; j++) {
+      for (let j = 0; j < x; j++) {
         z.push(0);
       }
       return z;
