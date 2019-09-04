@@ -8,24 +8,16 @@ import { getCurrentSubject } from "../../actions/subjectActions";
 import { getCurrentTeacher } from "../../actions/teacherActions";
 import { getCurrentClass } from "../../actions/classActions";
 import { getCurrentSlot, createSlot } from "../../actions/slotActions";
+import { setTimeTableloading,getTimeTable } from '../../actions/timeTableActions';
 import { connect } from "react-redux";
 import { generate } from "../../utils/generator";
-// import { withRouter } from "react-dom";
+import { withRouter } from "react-router-dom";
 
 class Slots extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      // slot: [
-      //   {
-      //     teacher: "",
-      //     sections: "",
-      //     subject: "",
-      //     numLectures: "",
-      //     numLabs: null
-      //   }
-      // ],
       numLectures: "",
       teacher: "",
       sections: "",
@@ -74,25 +66,27 @@ class Slots extends Component {
     this.props.getCurrentSlot();
   }
 
-  generator(slot,teacher, classes) {
+  async generator(slot,teacher, classes) {
+    this.props.setTimeTableloading();
     // e.preventDefault();
-      //  this.props.history.push("/display-time-table");
     let slots = [];
     let numPeriods = 0;
     slot ? numPeriods = slot.monday+slot.tuesday+slot.wednesday+ slot.thursday+ slot.friday+slot.saturday : numPeriods = 0;
+    numPeriods = numPeriods * classes.classAndsec.length;
+    console.log(numPeriods);
     let numLecture = 0;
-    slot.slots.map(el => 
+    slot.slots.map(el =>
       {
       const tempSlot = { numLabs: null, numLectures: el.numLectures, subject: el.subject, sections: [el.sections], teacher: el.teacher}
       slots.push(tempSlot);
-      numLecture = numLecture + el.numLectures;
+      return numLecture = numLecture + parseInt(el.numLectures,10);
       }
     );
     if(numPeriods<numLecture){
-      return console.log("Number of Periods should be more than or equal to the total number of Lectures")
+      return console.log("Number of Periods should be more than or equal to the total number of Lectures",numLecture)
     }    
-    console.log(slot, classes)
-    const result = generate(
+    console.log(slot, classes,numLecture)
+    const result = await generate(
       // [
       //   {
       //     teacher: "T1",
@@ -157,6 +151,9 @@ class Slots extends Component {
       teacher.teachersName,
       classes.classAndsec
     );
+    await this.props.getTimeTable(result);
+    console.log(this.props.history)
+    this.props.history.push("/display-time-table");
   }
 
   render() {
@@ -340,13 +337,17 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
+
+const SlotsWithRedux = connect(
   mapStateToProps,
   {
     getCurrentSubject,
     getCurrentTeacher,
     getCurrentClass,
     getCurrentSlot,
-    createSlot
+    createSlot,
+    getTimeTable,
+    setTimeTableloading,
   }
 )(Slots);
+export default withRouter(SlotsWithRedux);
