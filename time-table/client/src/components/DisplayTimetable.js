@@ -28,9 +28,9 @@ class DisplayTimetable extends Component {
             <th style={{ fontSize: "25px" }}>Sixth</th>
             <th style={{ fontSize: "25px" }}>Seventh</th>
             <th style={{ fontSize: "25px" }}>Eighth</th>
-            </tr>
-            </thead>
-            <tbody>
+          </tr>
+          </thead>
+          <tbody>
         {el.map(ele => {
 
           return <tr> 

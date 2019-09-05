@@ -1,5 +1,4 @@
 {
-    "eslint.autoFixOnSave": true,
     "editor.formatOnSave": false,
     "files.exclude": {
         "**/.classpath": true,
@@ -7,4 +6,5 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
+    "eslint.autoFixOnSave": true,
 }
