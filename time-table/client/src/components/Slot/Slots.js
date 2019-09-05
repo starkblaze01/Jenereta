@@ -73,7 +73,7 @@ class Slots extends Component {
     let numPeriods = 0;
     slot ? numPeriods = slot.monday+slot.tuesday+slot.wednesday+ slot.thursday+ slot.friday+slot.saturday : numPeriods = 0;
     numPeriods = numPeriods * classes.classAndsec.length;
-    console.log(numPeriods);
+    // console.log(numPeriods);
     let numLecture = 0;
     slot.slots.map(el =>
       {
@@ -85,7 +85,7 @@ class Slots extends Component {
     if(numPeriods<numLecture){
       return console.log("Number of Periods should be more than or equal to the total number of Lectures",numLecture)
     }    
-    console.log(slot, classes,numLecture)
+    // console.log(slot, classes,numLecture)
     const result = await generate(
       // [
       //   {
@@ -152,7 +152,7 @@ class Slots extends Component {
       classes.classAndsec
     );
     await this.props.getTimeTable(result);
-    console.log(this.props.history)
+    // console.log(this.props.history)
     this.props.history.push("/display-time-table");
   }
 
@@ -321,11 +321,14 @@ Slots.propTypes = {
   getCurrentTeacher: PropTypes.func.isRequired,
   getCurrentSlot: PropTypes.func.isRequired,
   createSlot: PropTypes.func.isRequired,
+  getTimeTable: PropTypes.func.isRequired,
+  setTimeTableloading: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   subject: PropTypes.object.isRequired,
   teacher: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  slot: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
