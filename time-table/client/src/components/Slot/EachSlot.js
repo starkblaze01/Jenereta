@@ -7,11 +7,10 @@ class EachSlot extends Component {
   onDeleteClick(id) {
     this.props.deleteSlot(id);
   }
-
   render() {
     const slots = this.props.slots.map(slot => (
       <tr key={slot._id}>
-        <td>{slot.teacher}</td>
+        <td>{slot.teacher}</ td>
         <td>{""}</td>
         <td>{slot.sections}</td>
         <td>{""}</td>

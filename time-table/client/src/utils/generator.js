@@ -272,7 +272,7 @@ export const generate = async (instaces, givenSlots, teachers, sections) => {
                   secInstances[sections[i]][x].mapp = [];
                 i--;
               } else {
-                if (notPossibleCount < 10) {
+                if (notPossibleCount < 20) {
                   flag = false;
                   regenerateCountSec = 0;
                   console.log("iterationCount", notPossibleCount);
