@@ -73,7 +73,6 @@ class Slots extends Component {
     let numPeriods = 0;
     slot ? numPeriods = slot.monday+slot.tuesday+slot.wednesday+ slot.thursday+ slot.friday+slot.saturday : numPeriods = 0;
     numPeriods = numPeriods * classes.classAndsec.length;
-    // console.log(numPeriods);
     let numLecture = 0;
     slot.slots.map(el =>
       {
@@ -303,7 +302,9 @@ class Slots extends Component {
         <div
           style={{ float: "right", marginLeft: "20px", marginBottom: "10px" }}
         >
-          <Button onClick={() => this.generator(slot, teacher, classes)} className="btn">
+          <Button onClick={() => this.generator(slot, teacher, classes)} className="btn"
+            disabled={loading}
+          >
             Generate Time-Table
           </Button>
         </div>
