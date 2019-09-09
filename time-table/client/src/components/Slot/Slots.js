@@ -49,7 +49,6 @@ class Slots extends Component {
       subject: this.state.subject
     };
     this.props.createSlot(slotData);
-    // this.forceUpdate();
     this.setState({
       numLectures: "",
       teacher: "",
@@ -68,7 +67,6 @@ class Slots extends Component {
 
   async generator(slot,teacher, classes) {
     this.props.setTimeTableloading();
-    // e.preventDefault();
     let slots = [];
     let numPeriods = 0;
     slot ? numPeriods = slot.monday+slot.tuesday+slot.wednesday+ slot.thursday+ slot.friday+slot.saturday : numPeriods = 0;
@@ -82,76 +80,18 @@ class Slots extends Component {
       }
     );
     if(numPeriods<numLecture){
-      return console.log("Number of Periods should be more than or equal to the total number of Lectures",numLecture)
-    }    
-    // console.log(slot, classes,numLecture)
+      return < div className="alert alert-danger" >
+        <strong>Danger!</strong> Number of Periods should be more than or equal to the total number of Lectures.
+        </div >
+    }
     const result = await generate(
-      // [
-      //   {
-      //     teacher: "T1",
-      //     sections: ["12A"],
-      //     subject: "English",
-      //     numLectures: "10",
-      //     numLabs: null
-      //   },
-      //   {
-      //     teacher: "T2",
-      //     sections: ["12A"],
-      //     subject: "Hindi",
-      //     numLectures: "10",
-      //     numLabs: null
-      //   },
-      //   {
-      //     teacher: "T3",
-      //     sections: ["12A"],
-      //     subject: "Maths",
-      //     numLectures: "10",
-      //     numLabs: null
-      //   },
-      //   {
-      //     teacher: "T4",
-      //     sections: ["12A"],
-      //     subject: "Science",
-      //     numLectures: "10",
-      //     numLabs: null
-      //   },
-      //   {
-      //     teacher: "T1",
-      //     sections: ["12B"],
-      //     subject: "English",
-      //     numLectures: "10",
-      //     numLabs: null
-      //   },
-      //   {
-      //     teacher: "T2",
-      //     sections: ["12B"],
-      //     subject: "Hindi",
-      //     numLectures: "10",
-      //     numLabs: null
-      //   },
-      //   {
-      //     teacher: "T3",
-      //     sections: ["12B"],
-      //     subject: "Maths",
-      //     numLectures: "10",
-      //     numLabs: null
-      //   },
-      //   {
-      //     teacher: "T4",
-      //     sections: ["12B"],
-      //     subject: "Science",
-      //     numLectures: "10",
-      //     numLabs: null
-      //   }
-      // ],
       slots,
-      // [8,8,8,8,8,5],
-      [slot.monday, slot.tuesday, slot.wednesday, slot.thursday, slot.friday, slot.saturday],
+      [slot.monday ? slot.monday : 0, slot.tuesday ? slot.tuesday : 0, slot.wednesday ? slot.wednesday : 0,
+        slot.thursday ? slot.thursday : 0, slot.friday ? slot.friday : 0, slot.saturday ? slot.saturday : 0],
       teacher.teachersName,
       classes.classAndsec
     );
     await this.props.getTimeTable(result);
-    // console.log(this.props.history)
     this.props.history.push("/display-time-table");
   }
 
@@ -303,7 +243,7 @@ class Slots extends Component {
           style={{ float: "right", marginLeft: "20px", marginBottom: "10px" }}
         >
           <Button onClick={() => this.generator(slot, teacher, classes)} className="btn"
-            disabled={loading}
+            disabled={loading || this.props.timeTable.loading}
           >
             Generate Time-Table
           </Button>
@@ -338,7 +278,8 @@ const mapStateToProps = state => ({
   classes: state.classes,
   errors: state.errors,
   slot: state.slot,
-  auth: state.auth
+  auth: state.auth,
+  timeTable: state.timeTable,
 });
 
 
