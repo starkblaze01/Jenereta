@@ -354,7 +354,8 @@ export const generate = async (instaces, givenSlots, teachers, sections) => {
       notPossible = false;
     }
     if (impossible) {
-      console.log("Could not generate in this case, please refresh/restart.\n");
+      // console.log("Could not generate in this case, please refresh/restart.\n");
+      return TT = null;
       /*
       for (let u in TT) {
         for (let v in TT[u]) {
@@ -374,7 +375,6 @@ export const generate = async (instaces, givenSlots, teachers, sections) => {
           }
         }
       } */
-      break;
     }
     //  console.log("iii");
   } // i

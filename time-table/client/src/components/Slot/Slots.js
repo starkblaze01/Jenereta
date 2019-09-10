@@ -66,11 +66,13 @@ class Slots extends Component {
   }
 
   async generator(slot,teacher, classes) {
-    this.props.setTimeTableloading();
     let slots = [];
     let numPeriods = 0;
     slot ? numPeriods = slot.monday+slot.tuesday+slot.wednesday+ slot.thursday+ slot.friday+slot.saturday : numPeriods = 0;
     numPeriods = numPeriods * classes.classAndsec.length;
+    if(!numPeriods){
+      return alert('Please Add Some Slots first');
+    }
     let numLecture = 0;
     slot.slots.map(el =>
       {
@@ -80,10 +82,9 @@ class Slots extends Component {
       }
     );
     if(numPeriods<numLecture){
-      return < div className="alert alert-danger" >
-        <strong>Danger!</strong> Number of Periods should be more than or equal to the total number of Lectures.
-        </div >
+      return alert('Total number of Periods should be more than or equal to the total number of Lectures.')
     }
+    this.props.setTimeTableloading();
     const result = await generate(
       slots,
       [slot.monday ? slot.monday : 0, slot.tuesday ? slot.tuesday : 0, slot.wednesday ? slot.wednesday : 0,
@@ -91,7 +92,7 @@ class Slots extends Component {
       teacher.teachersName,
       classes.classAndsec
     );
-    await this.props.getTimeTable(result);
+    await this.props.getTimeTable(result => result === null ? alert:'');
     this.props.history.push("/display-time-table");
   }
 
