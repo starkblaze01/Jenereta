@@ -16,7 +16,7 @@ An automated Time-Table Generator.
 - npm install
 
 ### Install Frontend Dependencies
--npm run client-install
+- npm run client-install
 
 ### Setup up dev_keys for database
 - Either run local MongoServer or,
@@ -29,6 +29,9 @@ module.exports = {
 ```
 ### Run
 - npm run dev
+
+## Note
+The number of times we try to generate the final time-table is 20. After that it will show alert to try again. If you want to increase number of tries then change the value of "notPossibleCount < 20" from [here](https://github.com/starkblaze01/Jenereta/blob/master/time-table/client/src/utils/generator.js).
 
 ## Team Members
 - [Aman Yadav](https://github.com/amany9000)
