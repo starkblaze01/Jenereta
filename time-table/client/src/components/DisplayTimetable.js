@@ -12,19 +12,15 @@ class DisplayTimetable extends Component {
 
 
   render() {
+    let periods = Array.from(Array(this.props.timeTable.maxPeriods).keys())
     const tt = this.props.timeTable.timeTable ? (this.props.timeTable.timeTable.map(el => {
       return <table className="table table-bordered" key={this.props.timeTable.timeTable.indexOf(el)}>
           <thead>
           <tr>
-            <th style={{ fontSize: "25px" }} />
-            <th style={{ fontSize: "25px" }}>First</th>
-            <th style={{ fontSize: "25px" }}>Second</th>
-            <th style={{ fontSize: "25px" }}>Third</th>
-            <th style={{ fontSize: "25px" }}>Fourth</th>
-            <th style={{ fontSize: "25px" }}>Fifth</th>
-            <th style={{ fontSize: "25px" }}>Sixth</th>
-            <th style={{ fontSize: "25px" }}>Seventh</th>
-            <th style={{ fontSize: "25px" }}>Eighth</th>
+            <th style={{ fontSize: "25px" }}>Days\Periods</th>
+            {periods.map(period => {
+              return <th style={{ fontSize: "25px" }} key={periods.indexOf(period)}>{period+1}</th>
+            })}
           </tr>
           </thead>
           <tbody>
@@ -53,7 +49,7 @@ class DisplayTimetable extends Component {
     <table className="table table-bordered">
       <thead>
         <tr>
-          <th style={{ fontSize: "25px" }} />
+          <th style={{ fontSize: "25px" }}>Days\Periods</th>
           <th style={{ fontSize: "25px" }}>First</th>
           <th style={{ fontSize: "25px" }}>Second</th>
           <th style={{ fontSize: "25px" }}>Third</th>

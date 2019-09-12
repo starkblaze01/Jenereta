@@ -92,8 +92,10 @@ class Slots extends Component {
       teacher.teachersName,
       classes.classAndsec
     );
-    await this.props.getTimeTable(result => result === null ? alert:'');
-    this.props.history.push("/display-time-table");
+    const maxm = Math.max(
+      slot.monday, slot.tuesday, slot.wednesday, slot.thursday, slot.friday, slot.saturday);
+    result ? await this.props.getTimeTable({result,maxm}) : console.log("Try again");
+    result ? this.props.history.push("/display-time-table") : alert("Sorry Couldn't generate the time-table in 20 iterations. Please try again.");
   }
 
   render() {

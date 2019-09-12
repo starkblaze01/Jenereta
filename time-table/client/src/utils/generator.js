@@ -396,7 +396,7 @@ export const generate = async (instaces, givenSlots, teachers, sections) => {
   //     }
   //   }
   // }
-  console.log(TT);
+  // console.log(TT);
 
   //console.log("TT",TT[1], notPossibleCount)
   /*
