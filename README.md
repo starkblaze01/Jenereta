@@ -8,6 +8,7 @@ An automated Time-Table Generator.
 - Bootstrap
 - Reactstrap
 - Redux
+- JWT Authentication
 
 ## Development and Installation
 - Navingate to [time-table](https://github.com/starkblaze01/Jenereta/tree/master/time-table) folder and follow steps below:
