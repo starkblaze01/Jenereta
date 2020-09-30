@@ -42,5 +42,8 @@ The number of times we try to generate the final time-table is 20. After that it
 - [Parmeshwar](https://github.com/parmeshwar01)
 - ,and [Me](https://github.com/starkblaze01/) 😎
 
+
+Liked the project? Hit the star button to show support!
+
 ## Found an Issue or any suggestions
 Make an issue [here](https://github.com/starkblaze01/Jenereta/issues/new).
