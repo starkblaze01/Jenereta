@@ -10,7 +10,7 @@ module.exports = function validateTeachersNameInput(data) {
     errors.teachersName = "This field is required";
   }
 
-  if (!Validator.isEmpty(data.teachersName)) {
+  if (!Validator.isAlphanumeric(data.teachersName)) {
     errors.teachersName = "Should be Alphanumeric!";
   }
 
